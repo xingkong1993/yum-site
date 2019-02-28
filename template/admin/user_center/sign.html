@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta content="email=no" name="format-detection"/>
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" name="viewport"/>
+    <title>后台管理平台</title>
+    {css href="__CSS__/common.css"}
+    {css href="__CSS__/login.css"}
+    {css href="__CSS__/mytag.css"}
+    {css href="__CSS__/iconfont.css"}
+</head>
+<body>
+<div class="login-box">
+    <div class="title">后台管理系统</div>
+    <form class="login" action="">
+        <dl>
+            <dd class="in">
+                <input type="text" name="account" placeholder="管理员账号" data-placeholder="管理员账号" autocomplete="off">
+            </dd>
+            <dd class="in"><input type="password" name="pwd" placeholder="登陆密码" data-placeholder="登陆密码"></dd>
+            <dd class="submit"><input type="submit" value="登陆"></dd>
+        </dl>
+    </form>
+</div>
+</body>
+{js href="__JS__/jquery.min.js"}
+{js href="__PLUGIN__/layer/layer.js"}
+<script>
+    window.onload = function () {
+        $(document.body).width($(window).width());
+        $(document.body).height($(window).height());
+    }
+    $(window).resize(function () {
+        $(document.body).width($(window).width());
+        $(document.body).height($(window).height());
+    })
+    //    $("body").height($(document).height());
+    $(".login").submit(function () {
+        var flag = true;
+        $(this).find(".in").each(function () {
+            $(this).find(".error").remove();
+            if ($(this).find("input").val() == '') {
+                var title = $(this).find("input").attr("placeholder");
+                $(this).find("input").addClass("in-error");
+                var html = '<div class="error"><icon class="icon-caret-up"></icon><span>' + title + '不能为空！</span></div>';
+                $(this).append(html);
+                flag = false;
+            }
+        });
+        if (!flag) {
+            $(".in-error:first").focus();
+            return false;
+        }
+        var $this = $(this);
+        var data = $(this).serialize();
+        $(this).find("input").attr("disabled", "disabled");
+        $(this).find("input[type=submit]").val("sign……");
+        $.ajax({
+            url: this.action,
+            type: "post",
+            data: data,
+            success: function (d) {
+                console.log(d);
+                if (d.code == 1) {
+                    location.href = d.url;
+                } else {
+                    $this.find("input").removeAttr("disabled");
+                    $this.find("input[type=submit]").val("登陆");
+                    var data = d.data;
+                    var obj = $("input[name=" + data.error + "]");
+                    var html = '<div class="error"><icon class="icon-caret-up"></icon><span>' + d.msg + '</span></div>';
+                    obj.addClass("in-error").val("").focus();
+                    obj.parent().find(".error").remove();
+                    obj.parent().append(html);
+                }
+            },
+            error: function (d) {
+                layer.msg("数据错误！");
+                $this.find("input").removeAttr("disabled");
+                $this.find("input[type=submit]").val("登陆");
+            }
+        });
+        return false;
+    });
+
+    $(".in input").blur(function () {
+        $(this).removeClass("in-error");
+        $(this).parent().find(".error").remove();
+        if ($(this).val() == '') {
+            var title = $(this).data("placeholder");
+            this.placeholder = title;
+            $(this).addClass("in-error");
+            var html = '<div class="error"><icon class="icon-caret-up"></icon><span>' + title + '不能为空！</span></div>';
+            $(this).parent().append(html);
+        }
+    }).focus(function () {
+        this.placeholder = "";
+    });
+</script>
+</html>

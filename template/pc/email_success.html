@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta content="email=no" name="format-detection"/>
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" name="viewport"/>
+    <title>{$site_name} - 注册成功</title>
+    <link rel="stylesheet" href="__CSS__/common.css">
+    <link rel="stylesheet" href="__CSS__/mytag.css">
+    <link rel="stylesheet" href="__CSS__/pc.css">
+    <link rel="stylesheet" href="__CSS__/iconfont.css">
+    <script src="__JS__/jquery.min.js"></script>
+    <script src="__JS__/pc/common.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <script src="__PLUGIN__/verJs/verJs.js"></script>
+    <!--<link rel="stylesheet" href="//at.alicdn.com/t/font_840730_mds708knt4q.css">-->
+    {css href="__CSS__/button.css"}
+    <!--<link rel="stylesheet" href="__PLUGIN__/font-icon/css/font-awesome.css">-->
+    <link rel="stylesheet" href="__PLUGIN__/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="__PLUGIN__/bootstrap/css/bootstrap-theme.css">
+    {block name='css'}{/block}
+</head>
+<body>
+<header class="header">
+    <div class="nav">
+        <!--<img src="__IMG__/logo.png" height="45" alt="">-->
+        <p class="yum-fl title" onclick="location.href='/index'">
+            {$site_name}
+        </p>
+        <ul class="yum-fr nav-menu">
+            <li>
+                <a href="{:url('index/index')}">
+                    <icon class="icon-home"></icon>
+                    首页</a>
+            </li>
+            <li>
+                <a href="{:url('index/blog_list')}">
+                    <icon class="icon-hot"></icon>
+                    热门博客</a>
+            </li>
+            <li>
+                <a href="{:url('index/edit_blog')}">
+                    <icon class="icon-edit"></icon>
+                    写博客</a>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="content yum-cl">
+    <p style="text-align: center;padding-top: 60px;line-height: 45px">
+        <icon class="{$success} icon-4x {$status==1?'green':'red'}"></icon>
+        {eq name='status' value='1'}
+        <span style="display: block">注册成功！系统向您的邮箱 <a href="javascript:;">{$email}</a> 发送了一封验证邮件，请尽快完成验证</span>
+        {else/}
+        <span style="display: block">注册成功！系统向您的邮箱 <a href="javascript:;">{$email}</a> 发送验证邮件失败，请联系网站管理员处理</span>
+        {/eq}
+        <span style="display: block">没有收到有邮件？<a href="">重新发送</a> <a href="{:url('index/index')}">返回首页</a></span>
+    </p>
+</div>
+<div id="scollorTop">
+    <icon class="icon-goTop icon-4x"></icon>
+    <span>返回顶部</span>
+</div>
+
+<footer class="footer">
+    <div>
+        <span>友情链接：</span>
+        <a href="http://www.thinkphp.cn/" target="_blank" class="link">thinkphp</a>
+        <a href="javascript:;" target="_blank" class="link">YUM-ADMIN</a>
+    </div>
+    <div>
+        <icon class="icon-copyright"></icon>
+        {$site_copyright}
+    </div>
+    <div class="talk_me">
+        <span> <icon class="icon-qq"></icon> {$site_qq}</span>
+        <span> <icon class="icon-email"></icon> {$site_email}</span>
+    </div>
+    <div class="qrcode" hidden>
+        <p>
+            <img src="{$site_wechat}" alt="" width="120" ondragstart='return false;'>
+            <br>
+            {$site_name}公众号
+        </p>
+        <p>
+            <img src="{$site_mini_app}" alt="" width="120" ondragstart='return false;'>
+            <br>
+            {$site_name}小程序
+        </p>
+        <p>
+            <img src="{$site_sina_weibo}" alt="" width="120" ondragstart='return false;'>
+            <br>
+            {$site_name}新浪微博
+        </p>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta content="email=no" name="format-detection"/>
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" name="viewport"/>
+    <title>{$site_name}后台管理平台</title>
+    {css href="__CSS__/common.css"}
+    {css href="__CSS__/admin.css"}
+    {css href="__CSS__/button.css"}
+    {css href="__CSS__/iconfont.css"}
+    {css href="__CSS__/mytag.css"}
+    {css href="__PLUGIN__/bootstrap/css/bootstrap.css"}
+    {css href="__PLUGIN__/switch/css/bootstrap-switch.css"}
+</head>
+<body>
+<header style="margin: 0 15px">
+    <ul class="banner-charts">
+        <li><a href="{:url('index/index',['webs'=>'welcome'])}">首页</a></li>
+        {if condition='!isset($path)'}
+        {volist name='menu_title' id='menu_title'}
+        <li>
+            {if condition='$menu_title["last"]'}
+            {$menu_title.name}
+            {else/}
+            <a href="{:url($menu_title['href'])}">{$menu_title.name}</a>
+            {/if}
+        </li>
+        {/volist}
+        {else/}
+        <li>
+            {$menu_title.name}
+        </li>
+        {/if}
+    </ul>
+</header>
+<form class="items">
+    {block name="items"}{/block}
+</form>
+{block name="footer"}{/block}
+</body>
+</html>
+{js href="__JS__/jquery.min.js"}
+{js href="__JS__/admin/common.js"}
+{js href="__PLUGIN__/switch/js/bootstrap-switch.js"}
+{js href="__JS__/admin/menu.js"}
+{block name="js"}{/block}

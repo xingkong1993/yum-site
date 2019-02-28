@@ -1,0 +1,34 @@
+{extend name='default/edit_template'/}
+{block name="form"}
+<dl>
+    <dt><span class="important"></span>名称</dt>
+    <dd>
+        <input type="hidden" name="id" value="{$id|default=''}">
+        <input type="text" name="name" autocomplete="off" value="{$name|default=''}" disabled>
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>权限列表</dt>
+    <dd>
+        <ul id="power">
+
+        </ul>
+    </dd>
+</dl>
+{/block}
+{block name="js"}
+{js href="__JS__/tree.js"}
+<script>
+    Tree.form_tree({
+        id:"#power",
+        data:eval('({$level_tree|json_encode})'),
+        level:1,
+        child:"children",
+        title:"name",
+        pk:"id",
+        pid:"pid",
+        defaultValue:eval('({$powers})'),
+        kid:"level"
+    });
+</script>
+{/block}

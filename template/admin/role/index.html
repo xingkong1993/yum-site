@@ -1,0 +1,24 @@
+{extend name="default/table_template"/}
+{block name="search"}
+<ul>
+    <li>
+        <label>
+            角色：
+            <input type="text" name="name" value="{$name|default=''}" autocomplete="off">
+        </label>
+    </li>
+    <li>
+        <button type="submit" class="yum-button yum-button-primary"><icon class="icon-search"></icon> 搜索</button>
+        <a href="{:url('index')}" class="yum-button yum-button-caution">清除搜索</a>
+    </li>
+</ul>
+{/block}
+{block name="thead"}
+<th data-field="name">角色</th>
+<th data-field="power">权限</th>
+<th data-field="remarks">说明</th>
+<th width="60" data-field="status" data-style="text-align:center"
+    data-eq="{1:'<icon class=success></icon>',2:'<icon class=error></icon>'}">状态
+</th>
+<th data-field="option" data-style="text-align:center" data-rules="{'%id':'id'}">操作</th>
+{/block}

@@ -1,0 +1,885 @@
+@charset "UTF-8";
+/*@import "max_640.css" screen and (max-width: 640px);*/
+@import "import/max_980.css" screen and (max-width: 980px);
+/*@import "max_1200.css" screen and (max-width: 1200px) and (min-width: 980px);*/
+html, body {
+    overflow-x: hidden;
+}
+
+input {
+    border: 1px solid #dedede;
+}
+
+dl {
+    margin-bottom: 0 !important;
+}
+
+.header {
+    width: 100vw;
+    height: 60px;
+    line-height: 60px;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(3, 3, 3, .6);
+    z-index: 999;
+}
+
+header > .nav {
+    width: 80%;
+    margin: auto;
+}
+
+header .nav-menu li {
+    display: inline-block;
+    cursor: pointer;
+    transition: all 1s ease 1s;
+    height: 40px;
+    padding: 0 15px;
+    vertical-align: middle;
+    line-height: 40px;
+    border-radius: 5px;
+}
+
+header .nav-menu li:hover, header .nav-menu li.active {
+    background: #ff602e;
+    border-radius: 50% 5px 50% 5px;
+    font-weight: bold;
+}
+
+header a {
+    color: #fff;
+    display: inline-block;
+    width: 100%;
+}
+
+header a:hover, header a:active, header a:focus {
+    text-decoration: none;
+    color: #FFF !important;
+}
+
+header .title {
+    font-weight: bold;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+header .search {
+    margin-left: 5px;
+    cursor: pointer;
+    width: 120px;
+    position: relative;
+}
+
+header .search input {
+    height: 35px;
+    vertical-align: middle;
+    background: none;
+    transition: all 1s ease 1s;
+    display: none;
+    width: 220px;
+    line-height: 35px;
+    opacity: 0;
+    padding-right: 30px;
+}
+
+header .search i, header .search icon {
+    position: absolute;
+    z-index: 7;
+    top: 20px;
+    color: #dedede;
+    font-size: 2rem;
+}
+
+header .show_search {
+    display: inline-block !important;
+    opacity: 1 !important;
+}
+
+header .search i.right, header .search icon.right {
+    right: -90px !important;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+.post-fix-header {
+    position: fixed !important;
+}
+
+#scollorTop {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 191, 255, .6);
+    color: #fff;
+    line-height: 30px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    display: none;
+    transition: all 2s ease 2s;
+}
+
+#scollorTop span {
+    width: 100%;
+    padding: 0 10px;
+    transition: all 2s ease 2s;
+    display: none;
+}
+
+#scollorTop icon {
+    line-height: 60px;
+    display: inline-block;
+    transition: all 2s ease 2s;
+}
+
+#scollorTop:hover icon {
+    display: none;
+}
+
+#scollorTop:hover span {
+    display: inline-block;
+}
+
+.footer {
+    width: 100vw;
+    background: rgba(3, 3, 3, .6);
+    padding: 15px 0;
+    color: #fff;
+    line-height: 40px;
+    text-align: center;
+}
+
+footer .talk_me > span {
+    display: inline-block;
+}
+
+footer .talk_me > span + span {
+    margin-left: 15px;
+}
+
+footer .link {
+    color: #fff;
+}
+
+footer .link:hover, footer .link:focus, footer .link:active {
+    color: deepskyblue;
+    text-decoration: none;
+}
+
+.content {
+    width: 80%;
+    margin: 15px auto;
+    min-height: 500px;
+    vertical-align: middle;
+    padding-top: 55px;
+}
+
+.content > div {
+    display: inline-block;
+}
+
+.item {
+    width: calc(100% - 310px);
+    height: 100%;
+    min-height: 500px;
+    vertical-align: top;
+}
+
+.article {
+    max-height: 260px;
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+}
+
+.article-tags {
+    height: auto !important;
+    overflow: auto !important;
+    min-height: 0 !important;
+}
+
+.article .article-title {
+    height: 45px;
+    line-height: 45px;
+    border-bottom: 3px solid deepskyblue;
+    color: deepskyblue;
+}
+
+.article-title .yum-fl {
+    font-weight: bold;
+    font-size: 20px;
+    padding-left: 15px;
+}
+
+.article-title .yum-fr {
+    color: deepskyblue;
+    vertical-align: top;
+    padding-right: 15px;
+}
+
+article a:hover, article a:active, article a:focus {
+    text-decoration: none;
+    color: deepskyblue !important;
+}
+
+.article .article-list {
+    max-height: calc(260px - 48px);
+    overflow: hidden;
+    line-height: 35px;
+    padding: 0 15px;
+}
+
+.article-list a {
+    display: block;
+    color: #9e9e9e;
+}
+
+.article-list > li + li {
+    border-top: 1px deepskyblue dashed;
+}
+
+.article-list li .yum-fl {
+    width: 65%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.article-tag li {
+    display: inline-block;
+    line-height: 30px;
+    color: #fff;
+    margin-top: 10px;
+    position: relative;
+    border: 1px solid #dedede;
+    padding: 5px;
+    width: auto;
+}
+
+.banner {
+    display: inline-block;
+    width: 300px;
+    height: 100%;
+    min-height: 500px;
+    /*border: 1px solid;*/
+    vertical-align: top;
+    padding: 0 10px;
+}
+
+.login-box {
+    width: 100%;
+}
+
+.user-info .user-banner {
+    height: 120px;
+    background-image: linear-gradient(-16deg, #a1d4ff 0%, #b59ffd 100%), linear-gradient(#acd7f6, #acd7f6);
+    position: relative;
+    cursor: pointer;
+}
+
+.user-info .user-banner span {
+    display: inline-block;
+    width: 60px;
+    height: 90px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    margin-left: -30px;
+    top: 50%;
+    margin-top: -45px;
+}
+
+.user-info .user-banner span i, .user-info .user-banner span img, .user-info .user-banner span icon {
+    display: block;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    border: 1px solid #fff;
+    margin: auto;
+    vertical-align: middle;
+    line-height: 60px;
+}
+
+.user-info .user-banner b {
+    width: 140px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: -60px;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    left: 50%;
+    color: #fff;
+    bottom: 10px;
+}
+
+.user-level {
+    padding: 0 8px;
+    border-top-left-radius: 12px;
+    line-height: 25px;
+    display: inline-block;
+    background-image: linear-gradient(-16deg, #ff1f30 0%, #FFB482 100%), linear-gradient(#F6757B, #F68806);
+    font-style: italic;
+    border-bottom-right-radius: 15px;
+    margin-right: 5px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.user-level:before {
+    content: "\e648";
+    font-style: normal;
+}
+
+.user-exit {
+    position: absolute;
+    color: #fff;
+    right: 10px;
+    top: 10px;
+}
+
+.user-info .user-blog {
+    height: 60px;
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.user-info .user-blog li {
+    display: inline-block;
+    width: 32%;
+    text-align: center;
+    height: 60px;
+    color: grey;
+}
+
+.user-info .user-blog li + li {
+    border-left: 1px solid #dedede;
+    vertical-align: top;
+}
+
+.third-login {
+    margin: 10px 15px 5px;
+}
+
+.third-login li {
+    display: inline-block;
+    /*width: 23%;*/
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+.hot {
+    color: #ff1f30;
+    line-height: 0;
+    margin-left: 5px;
+    vertical-align: super;
+}
+
+.red {
+    color: #ff1f30;
+}
+
+.captcha {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    cursor: pointer;
+}
+
+form fieldset {
+    line-height: 45px;
+    height: 45px;
+    font-weight: bold;
+    font-size: 18px;
+    color: deepskyblue;
+    border-bottom: 3px solid deepskyblue;
+    padding-left: 15px;
+}
+
+.login-box-edit, .register {
+    width: 75%;
+    margin: auto;
+    border: 1px solid #dedede;
+    padding-bottom: 15px;
+}
+
+.login-box-edit dl, .register dl {
+    padding: 0px 15px;
+    line-height: 30px;
+    width: 440px;
+    margin: 15px auto 0;
+}
+
+.register dl {
+    width: 85%;
+}
+
+.login-box-edit dl + dl {
+    margin-top: 15px;
+}
+
+.login-box-edit dd {
+    width: 100%;
+    vertical-align: top;
+}
+
+.login-box-edit dd input {
+    padding-left: 45px;
+    height: 35px;
+    border-left: 0;
+    line-height: 35px;
+    width: 265px;
+}
+
+.register .captcha {
+    left: 120px;
+}
+
+#gologin {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, .1);
+    z-index: 7777;
+    display: none;
+    overflow: hidden;
+}
+
+#gologin form {
+    background-color: #fff;
+    margin-top: 10%;
+    width: 440px;
+    position: absolute;
+    left: 50%;
+    margin-left: -220px;
+    box-shadow: 0 0 2px 1px rgba(51, 51, 51, 0.7);
+    border-radius: 5px;
+}
+
+#gologin .register {
+    width: 500px;
+    margin-left: -250px;
+}
+
+#gologin .register dl {
+    width: 100%;
+}
+
+#gologin .closed {
+    clear: both;
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    opacity: 1;
+    box-shadow: none;
+    text-shadow: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#gologin .closed:hover {
+    color: #ff1f30;
+}
+
+form.edit fieldset {
+    margin-bottom: 15px;
+}
+
+form.edit dl {
+    padding: 0 15px;
+}
+
+form.edit dl + dl {
+    margin-top: 15px;
+}
+
+/*--------------文章详情-----------------*/
+.article-items {
+    width: 100%;
+}
+
+.article-items-title {
+    line-height: 30px;
+    border-bottom: 3px solid deepskyblue;
+}
+
+.article-items-title h1 {
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+}
+
+.article-items-author {
+    margin-top: 10px;
+    height: 30px;
+}
+
+.article-items-title > span {
+    display: inline-block;
+}
+
+.article-items-author .author icon, .article-items-author .author img {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid #dedede;
+    margin-right: 5px;
+}
+
+.article-items-author .author b, .article-items-author .author date {
+    color: gainsboro;
+}
+
+.article-items-author .author date {
+    margin-left: 5px;
+}
+
+.author {
+    cursor: pointer;
+}
+
+.author:hover b, .author:hover date {
+    color: #ff1f30;
+    vertical-align: middle;
+}
+
+.article-items-jingle {
+    padding: 20px 25px;
+    background: #dedede;
+    margin-top: 15px;
+    border-left: 10px solid deepskyblue;
+    word-break: break-all; /* 支持IE和chrome，FF不支持*/
+    word-wrap: break-word; /* 以上三个浏览器均支持 */
+    font-size: 14px;
+    line-height: 30px;
+    text-indent: 2em;
+}
+
+blockquote {
+    margin-top: 15px;
+    border-left: 10px solid deepskyblue !important;
+    word-break: break-all; /* 支持IE和chrome，FF不支持*/
+    word-wrap: break-word; /* 以上三个浏览器均支持 */
+    line-height: 30px;
+    background-color: #dedede;
+}
+
+.article-items-remarks textarea {
+    width: 50%;
+    height: 220px;
+    padding-top: 10px;
+    /*display: block;*/
+    margin-bottom: 10px;
+}
+
+.article-items-content {
+    margin: 15px 0;
+    padding: 15px;
+    background-color: #dedede;
+    text-indent: 2em;
+    font-size: 14px;
+    line-height: 30px;
+    word-break: break-all; /* 支持IE和chrome，FF不支持*/
+    word-wrap: break-word; /* 以上三个浏览器均支持 */
+}
+
+.great {
+    padding: 0 15px;
+    cursor: pointer;
+    color: #333;
+}
+
+.great icon + icon {
+    margin-left: 5px;
+}
+
+.great icon:hover {
+    color: #ff1f30;
+}
+
+.article-items-comment-list {
+    padding: 10px;
+}
+
+.article-items-comment-list > li {
+    border-radius: 5px;
+    border: 1px solid #dedede;
+    line-height: 30px;
+    position: relative;
+    min-height: 60px;
+}
+
+.article-items-comment-list > li + li {
+    margin-top: 10px;
+}
+
+.article-items-comment-list .author {
+    padding: 5px;
+    border-bottom: 0;
+    height: 45px;
+    color: deepskyblue;
+    border-bottom: 3px solid deepskyblue;
+}
+
+.article-items-comment-list .author icon, .article-items-comment-list .author img {
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    border-radius: 100%;
+    border: 1px solid #dedede;
+}
+
+.article-items-comment-list .contents {
+    min-height: 30px;
+    line-height: 30px;
+    margin: 15px auto;
+    padding: 0 15px;
+    text-indent: 2em;
+    font-size: 12px;
+}
+
+.article-items-comment-list .great {
+    color: grey;
+    text-align: right;
+}
+
+.page {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.pagination {
+    clear: both !important;
+    display: inline-block !important;
+    float: none;
+}
+
+.qrcode p {
+    width: 120px;
+    display: inline-block;
+    text-align: center;
+}
+
+.qrcode p + p {
+    margin-left: 15px;
+}
+
+.user-data-list {
+    line-height: 40px;
+    padding: 0 15px;
+    cursor: pointer;
+    transition: all 0.5s ease 0.5s;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-data-list + .user-data-list {
+    border-top: 1px solid #dedede;
+}
+
+.user-data-list:hover {
+    color: #ff1f30;
+    font-weight: bold;
+}
+
+.user-data-list.actives {
+    background-color: deepskyblue;
+    color: #fff;
+    font-weight: bold;
+}
+
+/*.userCenter {*/
+/*border: 1px solid #dedede;*/
+/*}*/
+
+.banner-charts {
+    margin: 15px 0;
+}
+
+.banner-charts span {
+    color: grey;
+}
+
+.user-card li {
+    background-image: linear-gradient(-16deg, #a1d4ff 0%, #b59ffd 100%), linear-gradient(#acd7f6, #acd7f6);
+    background-repeat: no-repeat;
+    background-blend-mode: multiply, normal;
+    height: 120px;
+    border: none;
+    /*padding: 0 10px;*/
+    line-height: 30px;
+    font-family: "iconfonts";
+    overflow: hidden;
+}
+
+.user-card .user-items {
+    text-align: center;
+    line-height: 60px;
+    height: 60px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.user-btn {
+    height: 40px;
+    line-height: 40px;
+    border-top: 1px solid #dedede;
+}
+.user-btn a {
+    color: #fff;
+    position: relative;
+}
+
+.user-btn a:hover, .user-btn a:focus, .user-btn a:active {
+    color: #333;
+    text-decoration: none;
+}
+
+.user-btn a + a {
+    border-left: 1px solid #dedede;
+}
+
+.user-contractile {
+    /*border: none !important;*/
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.user-contractile .contractile-card-title {
+    background-image: linear-gradient(-16deg, #ff1f30 0%, #FFB482 100%), linear-gradient(#F6757B, #F68806);
+}
+
+.user-contractile .contractile-card-title span, .user-contractile .contractile-card-title icon {
+    color: #FFF;
+}
+
+.user-contractile .contractile-card-title a {
+    color: #fff;
+}
+
+.user-contractile .contractile-card-title a:active,
+.user-contractile .contractile-card-title a:hover,
+.user-contractile .contractile-card-title a:focus {
+    text-decoration: none;
+    color: #dedede;
+}
+
+.user-datail {
+    width: calc((100% - 25px) / 2);
+    display: inline-block;
+    border-left: 3px solid rgba(3, 3, 3, .6);
+    padding-left: 15px;
+    vertical-align: top;
+    line-height: 35px;
+}
+
+.user-datail dt {
+    font-weight: normal;
+}
+
+.user-datail dt, .user-datail dd {
+    display: inline-block;
+    vertical-align: top;
+    min-height: 35px;
+}
+
+.user-datail dd {
+    margin-left: 15px;
+    width: 65%;
+}
+
+.user-table {
+    width: 100%;
+    border: 1px solid #dedede;
+    line-height: 30px;
+}
+
+.user-table td {
+    padding: 0 15px;
+    vertical-align: middle;
+    border: 1px solid #dedede;
+}
+
+.user-table .page {
+    text-align: right;
+    padding-top: 10px;
+    padding-right: 0;
+}
+
+.parsetcroBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(3, 3, 3, .6);
+    z-index: 100000000;
+}
+
+.parsetcroBox .crop {
+    width: 500px;
+    height: 45vh;
+    margin: 80px auto;
+    background-color: #fff;
+    padding: 15px;
+}
+
+.parsetcroBox .crop .imageBox {
+    height: calc(100% - 60px);
+    width: 100%;
+}
+
+.parsetcroBox .crop .imageBox > div {
+    display: inline-block;
+    height: 100%;
+    vertical-align: top;
+}
+
+.parsetcroBox .crop .imageBox > div + div {
+    margin-left: 15px;
+}
+
+.parsetcroBox .crop .imageBox .imgBoxY {
+    width: 65%;
+    border: 1px solid #dedede;
+}
+
+.parsetcroBox .crop .imageBox .imgBoxL {
+    width: calc(100% - 65% - 20px);
+    border: 1px solid #dedede;
+}
+
+.parsetcroBox .crop .imageBox .imgBoxL img {
+    max-width: 100%;
+}
+
+.parsetcroBox .crop .bottomBox {
+    height: 60px;
+    line-height: 60px;
+    text-align: right;
+    margin-top: 15px;
+}
+
+blockquote a {
+    font-size: 14px;
+}

@@ -1,0 +1,65 @@
+{extend name='default/edit_template'/}
+{block name="form"}
+<dl>
+    <dt>
+        <span class="important">*</span>名称
+    </dt>
+    <dd>
+        <input type="text" data-required="请输入名称" name="name" value="{$name|default=''}">
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important">*</span>链接
+    </dt>
+    <dd>
+        <input type="text" data-required="请输入链接" name="link" value="{$link|default=''}" data-rule="^(http|https):\/\/.+$" data-rule-message="请输入完整的链接地址">
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important">*</span>跳转方式
+    </dt>
+    <dd>
+        <select name="target" id="target">
+            <option value="_self">当前页面</option>
+            <option value="_blank">新窗口打开</option>
+            <option value="new_view">弹窗开启</option>
+        </select>
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important"></span>logo
+    </dt>
+    <dd>
+        <img src="{$logo|default='__IMG__/default.png'}" alt="" height="120">
+        <button type="button" class="yum-button yum-button-primary upload upload_img">
+            <icon class="icon-upload"></icon>
+            上传logo
+        </button>
+        <button type="button" class="yum-button yum-button-caution clearUpload clear_upload_img">清除上传</button>
+        <input type="hidden" value="{$logo|default=''}" name="logo"
+               data-reg="['jpg','png','jpeg']"/>
+        <input type="file" class="upload_file">
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important"></span>状态
+    </dt>
+    <dd>
+        <input type="checkbox" name="status" id="status" class="switch">
+    </dd>
+</dl>
+{/block}
+{block name="js"}
+<script>
+    var state = "{$status|default=1}";
+    if(state==1){
+        $("#status").prop("checked",true);
+    }else{
+        $("#status").prop("checked",false);
+    }
+</script>
+{/block}

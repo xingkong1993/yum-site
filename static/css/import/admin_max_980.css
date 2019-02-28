@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+.card > li {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-bottom: 10px !important;
+}
+
+.pc {
+    display: none !important;
+}
+
+.mobile {
+    display: block !important;
+}
+
+.content {
+    height: calc(100vh - 50px) !important;
+}
+
+.contents {
+    width: 100% !important;
+    height: calc(100vh - 50px) !important;
+    float: none !important;
+    display: block !important;
+}
+
+header {
+    margin: 0 !important;
+}
+
+.pain .pain-content.pain-content-menu {
+    max-height: 300px !important;
+}
+
+.pain .pain-content.pain-content-menu > div {
+    width: calc(33.33% - 4px) !important;
+}

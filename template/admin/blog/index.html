@@ -1,0 +1,29 @@
+{extend name="default/table_template"/}
+{block name='btn'}{/block}
+{block name="search"}
+<ul>
+    <li>
+    <label>
+    文章：
+    <input type="text" name="name" value="{$name|default=''}" autocomplete="off">
+    </label>
+    </li>
+    <li>
+    <button type="submit" class="yum-button yum-button-primary"><icon class="icon-search"></icon> 搜索</button>
+    <a href="{:url('index')}" class="yum-button yum-button-caution">清除搜索</a>
+    </li>
+</ul>
+{/block}
+{block name="thead"}
+<th data-field="blog_icon" data-image='{"width":60,"height":"auto"}' width="60">封面</th>
+<th data-field="title">标题</th>
+<th data-field="tag" width="220">标签</th>
+<th data-field="type" width="220">类型</th>
+<th data-field="author" width="220" data-style="text-align:center">作者</th>
+<th data-field="is_comment" data-style="text-align:center" width="100" data-eq="{1:'<icon class=success></icon>',2:'<icon class=error></icon>'}">是否开启评论</th>
+<th width="220" data-field="status_tag" data-style="text-align:center"
+    data-eq="{1:'<icon class=pass> 已发布</icon>',2:'<span class=vers> 待审核</span>',3:'<span class=ems> 审核中</span>',4:'<span class=not-pass> 未通过</span>',5:'<span class=del> 已删除</span>'}">状态
+</th>
+<th data-field="add_time" width="120">添加时间</th>
+<th data-field="option" data-style="text-align:center" data-rules="{'%id':'id'}" data-rels="[2,3]">操作</th>
+{/block}

@@ -1,0 +1,23 @@
+{extend name="default/table_template"/}
+{block name="search"}
+<ul>
+    <!--<li>-->
+        <!--<label>-->
+            <!--角色：-->
+            <!--<input type="text" name="name" value="{$name|default=''}" autocomplete="off">-->
+        <!--</label>-->
+    <!--</li>-->
+    <!--<li>-->
+        <!--<button type="submit" class="yum-button yum-button-primary"><icon class="icon-search"></icon> 搜索</button>-->
+        <!--<a href="{:url('index')}" class="yum-button yum-button-caution">清除搜索</a>-->
+    <!--</li>-->
+</ul>
+{/block}
+{block name="thead"}
+<th data-field="type" width="220">模板类型</th>
+<th width="220" data-field="state" data-style="text-align:center"
+    data-eq="{1:'<icon class=success></icon>',2:'<icon class=error></icon>'}">状态
+</th>
+<th data-field="tpl_time" width="220">创建时间</th>
+<th data-field="option" data-style="text-align:center" data-rules="{'%id':'id'}" width="220">操作</th>
+{/block}

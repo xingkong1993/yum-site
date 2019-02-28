@@ -1,0 +1,49 @@
+{extend name='default/edit_template'/}
+{block name="action"}{/block}
+{block name="form"}
+<dl>
+    <dt><span class="important"></span>邮箱</dt>
+    <dd>
+        <input type="text" readonly name="email" value="{$email|default=''}">
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important">*</span>邮件类型</dt>
+    <dd>
+        <select name="email_type" id="email_type" data-required="请选择推荐邮件类型">
+            <option value="">请选择</option>
+            {volist name=':config("email_template")' id='email_template'}
+            <option value="{$key}">{$email_template}</option>
+            {/volist}
+        </select>
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>邮件内容</dt>
+    <dd style="width: 40%;border: 1px solid #dedede;padding: 0 15px;min-height: 80px;" id="email_template">
+        邮件内容展示
+    </dd>
+</dl>
+{/block}
+{block name="js"}
+
+<script>
+    $("form").data("parent", true);
+    $("#email_type").bind("change blur",function () {
+        var type = this.value;
+        var uri = "";
+        var base = "{:base64_encode(get_encrypt(22))}";
+        if(type){
+            if(type == 1){
+                // uri = "http://"+location.host+"/index/sing/email_login/uid/{$id}";
+                uri = "http://"+location.host+"{:url('index/sign/register')}?base="+base;
+            }
+            $.post("{:url('email_template')}",{type:type,account:'{$email|default=\'\'}',uri:uri},function (d) {
+                if(d.code == 1){
+                    $("#email_template").html(d.data.html+'<textarea name="email_content" hidden>'+d.data.text+'</textarea><input name="base" value="'+base+'" type="hidden"/>');
+                }
+            });
+        }
+    })
+</script>
+{/block}

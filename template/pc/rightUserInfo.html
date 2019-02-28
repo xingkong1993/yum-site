@@ -1,0 +1,53 @@
+<li class="login-box">
+    {if condition="!empty($session_user)"}
+    <div class="user-info">
+        <p class="user-banner">
+            <span onclick="location.href = '{:url(\'user/index\')}'">
+                {if condition='$session_user["icon"]'}
+                <img src="{$session_user.icon}" alt="">
+                {else/}
+                <icon class="icon-user icon-3x"></icon>
+                {/if}
+            </span>
+            <b><icon class="user-level">{$session_user.member_level|default=1}</icon>{$session_user.user_name|default=''}</b>
+            <a href="javascript:sign_out();" class="user-exit">
+                退出
+            </a>
+        </p>
+        <ul class="user-blog">
+            <li>
+                <b>
+                    博客
+                </b>
+                <number>
+                    {$blog_number|default=0}
+                </number>
+            </li>
+            <li>
+                <b>
+                    粉丝
+                </b>
+                <number>
+                    {$user_fans|default=0}
+                </number>
+            </li>
+            <li>
+                <b>
+                    关注
+                </b>
+                <number>
+                    {$user_idol|default=0}
+                </number>
+            </li>
+        </ul>
+    </div>
+    {else/}
+    <div class="user-info" onclick="goLogin()">
+        <p class="user-banner">
+            <span>
+                <icon class="icon-user icon-3x"></icon>
+            </span>
+        </p>
+    </div>
+    {/if}
+</li>

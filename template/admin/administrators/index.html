@@ -1,0 +1,47 @@
+{extend name="default/table_template"/}
+{block name="search"}
+<ul>
+    <li>
+        <label>
+            姓名：
+            <input type="text" name="realname" value="{$realname|default=''}">
+        </label>
+    </li>
+    <li>
+        <label>
+            账号：
+            <input type="text" name="account" value="{$account|default=''}">
+        </label>
+    </li>
+    <li>
+        <label>
+            角色：
+            <select name="is_admin" id="is_admin">
+                <option value="">请选择</option>
+                {volist name='roles' id='role'}
+                <option value="{$key}">{$role}</option>
+                {/volist}
+            </select>
+        </label>
+    </li>
+    <li>
+        <button type="submit" class="yum-button yum-button-primary"><icon class="icon-search"></icon> 搜索</button>
+        <a href="{:url('index')}" class="yum-button yum-button-caution">清除搜索</a>
+    </li>
+</ul>
+{/block}
+{block name="thead"}
+<th data-field="realname" width="80">姓名</th>
+<th data-field="account" width="80">账号</th>
+<th width="60" data-field="sex" data-style="text-align:center" data-eq="{1:'男',2:'女',3:'保密'}">性别</th>
+<th width="120" data-field="birthday" data-style="text-align:center" data-default="保密">生日</th>
+<th width="60" data-field="old" data-style="text-align:center" data-default="保密">年龄</th>
+<th width="220" data-field="role" data-style="text-align:center" data-default="保密">角色</th>
+<th width="220" data-field="is_activation" data-style="text-align:center" data-eq="{1:'<icon class=success></icon>',2:'<icon class=error></icon>'}">状态</th>
+<th data-field="option" data-style="text-align:center" data-rules="{'%id':'admin_id'}">操作</th>
+{/block}
+{block name="js"}
+<script>
+    $("#is_admin").val("{$is_admin|default=''}")
+</script>
+{/block}

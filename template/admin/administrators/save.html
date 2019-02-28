@@ -1,0 +1,94 @@
+{extend name='default/edit_template'}
+{block name='form'}
+<dl>
+    <input type="hidden" name="admin_id" value="{$admin_id|default=''}">
+    <dt><span class="important">*</span>姓名</dt>
+    <dd>
+        <input type="text" name="realname" value="{$realname|default=''}" data-required="请输入真实姓名">
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important">*</span>账号
+    </dt>
+    <dd>
+        <input type="text" name="account" value="{$account|default=''}" data-required="请输入登录账号" data-required="请输入密码"
+               data-rule="^[a-zA-Z][A-Za-z0-9]+$" data-rule-message="账号只能是字母和数字且以字母开头">
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important">*</span>权限</dt>
+    <dd>
+        <select name="is_admin" id="is_admin" data-required="请选择权限">
+            <option value="">请选择</option>
+            {volist name="roles" id="res"}
+            <option value="{$key}">{$res}</option>
+            {/volist}
+        </select>
+    </dd>
+</dl>
+<dl class="password">
+    <dt>
+        <span class="important">*</span>密码
+    </dt>
+    <dd>
+        <input type="password" name="password" data-required="请输入密码" data-rule="^\w{6,12}$"
+               data-rule-message="密码长度6~12位"
+               id="password">
+    </dd>
+</dl>
+<dl class="password">
+    <dt>
+        <span class="important">*</span>确认密码
+    </dt>
+    <dd>
+        <input type="password" name="" data-required="请确认密码" data-rule="^\w{6,12}" data-rule-message="密码长度6~12位"
+               data-equal="#password">
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important">*</span>手机号码
+    </dt>
+    <dd>
+        <input type="text" name="mobile" value="{$mobile|default=''}" data-required="请输入手机号" data-mobile="true">
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important"></span>邮箱
+    </dt>
+    <dd>
+        <input type="text" name="email" value="{$email|default=''}" data-email="true">
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important"></span>激活状态
+    </dt>
+    <dd>
+        <input type="checkbox" name="is_activation" value="{$is_activation|default=''}" class="switch"
+               id="is_activation">
+    </dd>
+</dl>
+{/block}
+{block name='js'}
+<script>
+    var id = "{$admin_id|default=''}";
+    if (id) {
+        $(".password").each(function () {
+            $(this).find("input").removeAttr("data-required");
+            $(this).find(".important").empty();
+            $("#is_admin").removeAttr("data-required").parents("dl").find(".important").empty();
+        });
+    }
+
+    var is_activation = "{$is_activation|default=1}";
+    if (parseInt(is_activation) == 1) {
+        $("#is_activation").prop("checked", true);
+    } else {
+        $("#is_activation").prop("checked", false);
+    }
+    $("#is_admin").val("{$is_admin|default=''}");
+</script>
+{/block}

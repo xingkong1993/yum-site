@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta content="email=no" name="format-detection"/>
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" name="viewport"/>
+    <title>{$site_name} - {block name='title'}首页{/block}</title>
+    <link rel="stylesheet" href="__CSS__/common.css">
+    <link rel="stylesheet" href="__CSS__/mytag.css">
+    <link rel="stylesheet" href="__CSS__/pc.css">
+    <link rel="stylesheet" href="__CSS__/iconfont.css">
+    <script src="__JS__/jquery.min.js"></script>
+    <script src="__JS__/pc/common.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <script src="__PLUGIN__/verJs/verJs.js"></script>
+    <!--<link rel="stylesheet" href="//at.alicdn.com/t/font_840730_mds708knt4q.css">-->
+    {css href="__CSS__/button.css"}
+    <!--<link rel="stylesheet" href="__PLUGIN__/font-icon/css/font-awesome.css">-->
+    <link rel="stylesheet" href="__PLUGIN__/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="__PLUGIN__/bootstrap/css/bootstrap-theme.css">
+    {block name='css'}{/block}
+</head>
+<body>
+<header class="header">
+    <div class="nav">
+        <!--<img src="__IMG__/logo.png" height="45" alt="">-->
+        <p class="yum-fl title" onclick="location.href='{:url(\'index/index\')}'">
+            {$site_name}
+            <!--<img src="__IMG__/yum.png" alt="" height="45">-->
+        </p>
+        {block name="menu"}
+        {/block}
+        <div class="mobile-menu yum-fr">
+            <icon class="icon-lg menu-btn icon-menus"></icon>
+            <ul class="mobile-menu-list">
+                <li class="login">
+                    {if condition="!empty($session_user)"}
+                    <div class="user-login yum-cl">
+                        <span class="yun-fl" onclick="location.href='{:url(\'user/index\')}'">
+                            <icon class="icon-user"> {$session_user.user_name|default=''}</icon>
+                        </span>
+                        <a href="javascript:sign_out();">退出</a>
+                    </div>
+                    {else/}
+                    <icon class="icon-user not-login" onclick="goLogin()"> 登录/注册</icon>
+                    {/if}
+                </li>
+                {block name='mobile_menu'}{/block}
+                <li class="mobile-search">
+                    <input type="text" autocomplete="off" name="search" onfocus="this.placeholder=''"
+                           placeholder="搜索热门博客/博主"
+                           onblur="search_blur(this)">
+                    <icon class="icon-search" onclick="show_search_input(this)"></icon>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="content yum-cl">
+    <div class="item">
+        {block name='content'}
+        {/block}
+    </div>
+    <ul class="banner">
+        {block name='banners'}
+
+        {/block}
+    </ul>
+</div>
+<div id="scollorTop" onclick="get_top()">
+    <icon class="icon-goTop icon-4x"></icon>
+    <span>返回顶部</span>
+</div>
+
+<footer class="footer">
+    <div>
+        <span>友情链接：</span>
+        <a href="http://www.thinkphp.cn/" target="_blank" class="link">thinkphp</a>
+        <a href="javascript:;" target="_blank" class="link">YUM-ADMIN</a>
+    </div>
+    <div>
+        <icon class="icon-copyright"></icon>
+        {$site_copyright}
+    </div>
+    <div class="talk_me">
+        <span> <icon class="icon-qq"></icon> {$site_qq}</span>
+        <span> <icon class="icon-email"></icon> {$site_email}</span>
+    </div>
+    <div class="qrcode" hidden>
+        <p>
+            <img src="{$site_wechat}" alt="" width="120" ondragstart='return false;'>
+            <br>
+            {$site_name}公众号
+        </p>
+        <p>
+            <img src="{$site_mini_app}" alt="" width="120" ondragstart='return false;'>
+            <br>
+            {$site_name}小程序
+        </p>
+        <p>
+            <img src="{$site_sina_weibo}" alt="" width="120" ondragstart='return false;'>
+            <br>
+            {$site_name}新浪微博
+        </p>
+    </div>
+</footer>
+<div id="gologin">
+    {include file="/sign" /}
+    <icon class="closed icon-close icon-4x"></icon>
+</div>
+<script>
+    $(".menu-btn").click(function () {
+        if ($(this).siblings(".mobile-menu-list").hasClass("mobile-menu-list-show")) {
+            $(this).siblings(".mobile-menu-list").removeClass("mobile-menu-list-show").addClass("mobile-menu-list-hide");
+        } else {
+            $(this).siblings(".mobile-menu-list").addClass("mobile-menu-list-show").removeClass("mobile-menu-list-hide");
+        }
+    });
+</script>
+{block name='js'}{/block}
+</body>
+</html>

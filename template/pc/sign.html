@@ -1,0 +1,175 @@
+<form action="{:url('sign/login')}" data-form="ajax" class="login-box-edit" style="/*display: none*/" autocomplete="off"
+      id="login">
+    <fieldset>登录</fieldset>
+    <dl>
+        <dd>
+            <iconcirle class="icon-user icon-lg icon-middles"></iconcirle>
+            <input type="text" name="account" placeholder="请输入邮箱" data-email="true" data-required="请输入邮箱"
+                   data-icon-color="dl">
+        </dd>
+    </dl>
+    <dl>
+        <dd>
+            <iconcirle class="icon-lock icon-lg icon-middles"></iconcirle>
+            <input type="password" name="password" placeholder="请输入密码" data-required="请输入密码" data-icon-color="dl">
+        </dd>
+    </dl>
+    <dl style="padding-right: 143px;">
+        <dd class="text-right">
+            <a href="javascript:;" class="gotPwd-btn" onclick="gotPwd()">忘记密码？</a>
+        </dd>
+        <dd class="text-right">
+            <span>没有帐号？去<a href="javascript:;" class="register-btn" onclick="registerBox()">注册</a></span>
+            <button type="submit" class="yum-button yum-button-primary">登录</button>
+        </dd>
+    </dl>
+    <dl>
+        <dd>
+            <block>
+                <span>快捷登录</span>
+            </block>
+            <ul class="third-login yum-cl">
+                <li>
+                    <a class="yum-button yum-button-primary yum-button-circle yum-button-large">
+                        <icon class="icon-qq icon-2x icon-middles"></icon>
+                    </a>
+                </li>
+                <li>
+                    <a class="yum-button yum-button-action yum-button-circle yum-button-large">
+                        <icon class="icon-weixin icon-2x icon-middles"></icon>
+                    </a>
+                </li>
+                <li>
+                    <a class="yum-button yum-button-caution yum-button-circle yum-button-large">
+                        <icon class="icon-weibo icon-2x icon-middles"></icon>
+                    </a>
+
+                </li>
+                <li>
+                    <a class="yum-button yum-button-primary yum-button-circle yum-button-large">
+                        <icon class="icon-alipay icon-2x icon-middles"></icon>
+                    </a>
+                </li>
+            </ul>
+        </dd>
+    </dl>
+</form>
+<form action="{:url('sign/registers')}" method="post" data-form="ajax" class="register" autocomplete="off"
+      style="display: none" id="register">
+    <fieldset>注册账号</fieldset>
+    <dl>
+        <dt>
+            <span class="red">*</span> 邮箱
+        </dt>
+        <dd>
+            <input type="text" name="email" data-required="请输入邮箱" data-email="true">
+        </dd>
+    </dl>
+    <dl>
+        <dt>
+            <span class="red">*</span> 密码
+        </dt>
+        <dd>
+            <input type="password" name="password" data-required="请输入密码" data-rule="^[a-zA-z0-9]{6,16}$"
+                   data-rule-message="请输入6~16位字母或数字" id="password">
+        </dd>
+    </dl>
+    <dl>
+        <dt><span class="red">*</span> 确认密码</dt>
+        <dd><input type="password" data-required="请确认密码" data-equal="#password"></dd>
+    </dl>
+    <dl>
+        <dt><span class="red">*</span>验证码</dt>
+        <dd style="position: relative">
+            <input type="text" class="min-input" name="captcha">
+            <img src="{:captcha_src(1)}" alt="" height="35"
+                 class="captcha" ondragstart='return false;'
+                 onclick="this.src='{:captcha_src(1)}'">
+        </dd>
+    </dl>
+    <dl>
+        <dt></dt>
+        <dd>
+            <span>已有帐号？去<a href="javascript:;" onclick="loginBox()">登录</a></span>
+            <button type="submit" class="yum-button yum-button-primary">立即注册</button>
+        </dd>
+    </dl>
+</form>
+<form action="" method="post" data-form="ajax" class="register" autocomplete="off" style="display: none" id="gotPwd">
+    <fieldset>忘记密码</fieldset>
+    <dl>
+        <dt>
+            <span class="red">*</span> 邮箱
+        </dt>
+        <dd>
+            <input type="text" name="account" data-required="请输入邮箱" data-email="true">
+        </dd>
+    </dl>
+    </dl>
+    <dl>
+        <dt><span class="red">*</span>验证码</dt>
+        <dd style="position: relative">
+            <input type="text" class="min-input" name="captcha">
+            <img src="{:captcha_src(2)}" alt="" height="35"
+                 class="captcha" ondragstart='return false;'
+                 onclick="this.src='{:captcha_src(2)}'">
+        </dd>
+    </dl>
+    <dl>
+        <dt></dt>
+        <dd>
+            <a href="javascript:;" onclick="registerBox()">注册新用户</a>
+            <button type="submit" class="yum-button yum-button-primary">发送邮件</button>
+        </dd>
+    </dl>
+</form>
+
+<script>
+    // siblings_width();
+    var sign_in = new VerJs();
+    sign_in.init({
+        form: "#login",
+        success: function (data) {
+            data = typeof data != "object" ? JSON.parse(data) : data;
+            if (data.code == 1) {
+                layer.msg(data.msg, function () {
+                    if (data.data == 'captcha') {
+                        location.href = data.url;
+                    }
+                    location.reload();
+                })
+            } else {
+                var err = document.querySelector("#login").querySelector("input[name=" + data.data + "]");
+                err.value = "";
+                err.focus();
+                layer.msg(data.msg);
+            }
+        },
+        linkName: "__PLUGIN__/verJs/need"
+    });
+    var registers = new VerJs();
+    registers.init({
+        form: "#register",
+        success: function (data) {
+            data = typeof data != "object" ? JSON.parse(data) : data;
+            if (data.code == 1) {
+                location.href = data.url;
+            } else {
+                var err = document.querySelector("#register").querySelector("input[name=" + data.data + "]");
+                err.value = "";
+                err.focus();
+                layer.msg(data.msg);
+                document.querySelector("#register").querySelector(".captcha").src = "{:captcha_src(1)}?$_=" + Math.random();
+            }
+        },
+        linkName: "__PLUGIN__/verJs/need"
+    });
+    var gotPassword = new VerJs();
+    gotPassword.init({
+        form: "#gotPwd",
+        success: function (data) {
+
+        },
+        linkName: "__PLUGIN__/verJs/need"
+    });
+</script>

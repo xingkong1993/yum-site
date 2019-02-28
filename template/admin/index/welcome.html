@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta content="email=no" name="format-detection"/>
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" name="viewport"/>
+    <title>后台管理平台</title>
+    {css href="__CSS__/common.css"}
+    {css href="__CSS__/admin.css"}
+    {css href="__CSS__/button.css"}
+    {css href="__CSS__/iconfont.css"}
+    {css href="__CSS__/mytag.css"}
+    {css href="__PLUGIN__/bootstrap/css/bootstrap.css"}
+</head>
+<body>
+<header style="margin: 0 15px">
+    <dl class="menu-title">
+        <dt>主页</dt>
+        <dd>/ index</dd>
+    </dl>
+</header>
+<div class="items">
+    <ul class="card card-2-8">
+        <li>
+            <ul class="card card-2">
+                <li class="pain">
+                    <div class="pain-title">
+                        快捷方式
+                    </div>
+                    <div class="pain-content pain-content-menu">
+                        <div onclick="location.href='{:url(\'notice/add\')}'">
+                            <icon class="icon-notice icon-2x"></icon>
+                            <p>发布公告</p>
+                        </div>
+                        <div>
+                            <icon class="icon-site icon-2x"></icon>
+                            <p>网站设置</p>
+                        </div>
+                        <div>
+                            <icon class="icon-tags icon-2x"></icon>
+                            <p>友情链接</p>
+                        </div>
+                        <div>
+                            <icon class="icon-user icon-2x"></icon>
+                            <p>用户申请</p>
+                        </div>
+                        <div>
+                            <icon class="icon-auth icon-2x"></icon>
+                            <p>用户认证</p>
+                        </div>
+                        <div>
+                            <icon class="icon-admin icon-2x"></icon>
+                            <p>添加管理</p>
+                        </div>
+                        <div>
+                            <icon class="icon-email icon-2x"></icon>
+                            <p>添加邮件模板</p>
+                        </div>
+                        <div>
+                            <icon class="icon-files icon-2x"></icon>
+                            <p>文章审核</p>
+                        </div>
+                        <div>
+                            <icon class="icon-comment icon-2x"></icon>
+                            <p>评论审核</p>
+                        </div>
+                        <div>
+                            <icon class="icon-weixin icon-2x"></icon>
+                            <p>公号设置</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="pain">
+                    <div class="pain-title">
+                        待办事项
+                    </div>
+                    <div class="pain-content pain-content-task">
+                        <div>
+                            <p class="pain-task-name">待审文章</p>
+                            <p class="pain-task-number">{$blog|default=0}</p>
+                        </div>
+                        <div>
+                            <p class="pain-task-name">用户申请</p>
+                            <p class="pain-task-number">{$users|default=0}</p>
+                        </div>
+                        <div>
+                            <p class="pain-task-name">用户认证</p>
+                            <p class="pain-task-number">{$apply|default=0}</p>
+                        </div>
+                        <div>
+                            <p class="pain-task-name">更多...</p>
+                            <p class="pain-task-name">MORE</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="pain">
+            <div class="pain-title">
+                系统配置
+            </div>
+            <table class="pain-content pain-content-table">
+                <tr>
+                    <td width="100">当前版本</td>
+                    <td>V1.0</td>
+                </tr>
+                <tr>
+                    <td>框架组成</td>
+                    <td>thinkphp5.0</td>
+                </tr>
+                <tr>
+                    <td>特色优点</td>
+                    <td>免费、开源、响应式</td>
+                </tr>
+                <tr>
+                    <td>其他</td>
+                    <td>--</td>
+                </tr>
+            </table>
+        </li>
+        <li class="pain">
+            <!--<div class="pain-title">统计报表</div>-->
+            <div class="pain-content pain-content-chart" id="line-chart"></div>
+        </li>
+        <li class="pain">
+            <div class="pain-title">
+                消息通知
+            </div>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
+{js href="__JS__/jquery.min.js"}
+{js href="__JS__/admin/common.js"}
+{js href="__PLUGIN__/layer/layer.js"}
+{js href="__PLUGIN__/echarts/echarts.js"}
+{js href="__JS__/admin/index.js"}
+<script>
+    var charts = echarts.init(document.getElementById('line-chart'), "light");
+    option = {
+        title: {
+            text: '访问统计'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                label: {
+                    backgroundColor: '#6a7985'
+                }
+            }
+        },
+        legend: {
+            data: [
+                '直接访问',
+                '搜索引擎'
+            ]
+        },
+        // toolbox: {
+        //     feature: {
+        //         // saveAsImage: {}
+        //     }
+        // },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                data: [
+                    '0:00',
+                    '2:00',
+                    '4:00',
+                    '6:00',
+                    '8:00',
+                    '10:00',
+                    '12:00',
+                    '14:00',
+                    '16:00',
+                    '18:00',
+                    '20:00',
+                    '22:00'
+                ]
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: '直接访问',
+                type: 'line',
+                stack: '总量',
+                areaStyle: {
+                    normal: {
+                        color: "#1456eb"
+                    }
+                },
+                lineStyle: {
+                    normal: {
+                        color: "#1456eb"
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: "#1456eb"
+                    }
+                },
+                data: [
+                    75,
+                    63,
+                    55,
+                    125,
+                    225,
+                    137,
+                    167,
+                    192,
+                    227,
+                    165,
+                    133,
+                    259
+                ]
+            },
+            {
+                name: '搜索引擎',
+                type: 'line',
+                stack: '总量',
+                areaStyle: {
+                    normal: {
+                        color: "#2798eb"
+                    }
+                },
+                lineStyle: {
+                    normal: {
+                        color: "#2798eb"
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: "#2798eb"
+                    }
+                },
+                data: [
+                    127,
+                    88,
+                    95,
+                    140,
+                    137,
+                    222,
+                    267,
+                    325,
+                    400,
+                    155,
+                    147,
+                    300
+                ]
+            }
+        ]
+    };
+    charts.setOption(option);
+</script>

@@ -1,0 +1,116 @@
+{extend name='default/edit_template'/}
+{block name="form"}
+<dl>
+    <dt><span class="important">*</span>父级菜单</dt>
+    <dd>
+        <select name="pid" id="pid" data-required="请选择父级菜单">
+            <option value="0" level="0">
+                顶级菜单
+            </option>
+            {volist name='menu' id='menus'}
+            <option value="{$menus.id}" level="{$menus.level}">{$menus["level"]>1?"|--":""}{$menus.name}</option>
+            {/volist}
+        </select>
+    </dd>
+
+</dl>
+<dl>
+    <dt><span class="important">*</span>名称</dt>
+    <dd>
+        <input type="hidden" name="id" value="{$id|default=''}">
+        <input type="text" name="name" data-minlength="2" autocomplete="off" value="{$name|default=''}">
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important">*</span>跳转链接
+    </dt>
+    <dd>
+        <input type="text" name="href" data-rule="^[a-z][a-z0-9\?\=\/_]+$"
+               data-rule-message="链接包含字母_?/=，以字母开头" value="{$href|default=''}" data-required="链接不能为空">
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important">*</span>别名
+    </dt>
+    <dd>
+        <input type="text" name="jingle" data-rule="^[a-zA-Z][a-zA-Z_ ]{1,11}$"
+               data-rule-message="只能是字母下划线或空格，长度2-12位" autocomplete="off" value="{$jingle|default=''}"
+               data-required="请输入字母下划线或空格，长度2-12位">
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important">*</span>等级
+    </dt>
+
+    <dd>
+        <input type="text" name="level" autocomplete="off" data-rule="^[123]$" data-rule-message="请输入1-3任意数字"
+               value="{$level|default='1'}" readonly>
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important">*</span>排序
+    </dt>
+    <dd>
+        <input type="text" name="sort" autocomplete="off" data-rule="^\d{1,4}$" data-rule-message="请输入0-9999任意数字"
+               value="{$sort|default='1'}">
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important"></span>状态
+    </dt>
+    <dd>
+        <input type="checkbox" class="switch" id="status" name="status">
+    </dd>
+</dl>
+
+<dl class="icon">
+    <dt>
+        <span class="important"></span>图标
+    </dt>
+    <dd>
+        <input type="text" readonly autocomplete="off" class="min-input" name="icon" value="{$icon|default=''}">
+        <button class="yum-button yum-button-primary menu-change" type="button">选择</button>
+        <button class="yum-button yum-button-caution menu-clear" type="button">清除</button>
+        <div class="icon-tab">
+            <ul class="icon-tabs">
+                <li class="actives">默认</li>
+                <li tar="icon-2x">2倍</li>
+                <li tar="icon-3x">3倍</li>
+            </ul>
+            <ul class="icons">
+                {include file='default:icon_list'}
+            </ul>
+        </div>
+    </dd>
+</dl>
+{/block}
+{block name="js"}
+<script>
+    var pid = "{:isset($pid)&&$pid>=0?$pid:(input('pid')?input('pid'):0)}";
+    $("#pid").val(pid);
+    if (parseInt($("#pid").find("option:selected").attr("level")) + 1 > 1) {
+        $(".icon").hide();
+        $("input[name=level]").val(parseInt($("#pid").find("option:selected").attr("level")) + 1)
+    }
+    var state = "{$status|default=1}";
+    if (state == 1) {
+        $("#status").prop("checked", true);
+    } else {
+        $("#status").prop("checked", false);
+    }
+    var form = new VerJs();
+    form.init({
+        form: "form.items",
+        // linkName: "__PLUGIN__/verJs/need",
+        success: successCallback,
+        fail: function (data) {
+
+        }
+    });
+</script>
+{/block}

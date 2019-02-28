@@ -1,0 +1,321 @@
+{extend name='/user'}
+{block name='banners'}
+<li class="user-data-list" onclick="location.href='{:url(\'user_details\')}'">
+    <icon class="icon-data"></icon>
+    我的资料
+</li>
+<li class="user-data-list" onclick="location.href='{:url(\'user_blog\')}'">
+    <icon class="icon-files"></icon>
+    我的博客 ({$blog_number|default=''})
+</li>
+<li class="user-data-list">
+    <icon class="icon-comment"></icon>
+    我的评论
+</li>
+<li class="user-data-list">
+    <icon class="icon-friend"></icon>
+    我的圈子
+</li>
+{/block}
+{block name='menu_list'}
+<li class="user-data-list" onclick="location.href='{:url(\'user_details\')}'">
+    <icon class="icon-data"></icon>
+    我的资料
+</li>
+<li class="user-data-list" onclick="location.href='{:url(\'user_blog\')}'">
+    <icon class="icon-files"></icon>
+    我的博客 ({$blog_number|default=''})
+</li>
+<li class="user-data-list">
+    <icon class="icon-comment"></icon>
+    我的评论
+</li>
+<li class="user-data-list">
+    <icon class="icon-friend"></icon>
+    我的圈子
+</li>
+{/block}
+{block name='content'}
+<ul class="card card-4 user-card">
+    <li>
+        <h4 class="user-items">
+            用户档案
+        </h4>
+        <p class="user-btn yum-btn-2 yum-btn-group">
+            <a href="{:url('user_details')}">查看资料</a>
+            <a href="{:url('user_details?edit=true')}">修改资料</a>
+        </p>
+    </li>
+    <li>
+        <h4 class="user-items">
+            博客管理
+        </h4>
+        {if condition='!request()->isMobile()'}
+        <p class="user-btn yum-btn-2 yum-btn-group">
+            <a href="{:url('index/edit_blog')}">发布博客</a>
+            <a href="{:url('user_blog')}">我的博客</a>
+        </p>
+        {else/}
+        <p class="user-btn yum-btn-2 yum-btn-group">
+            <a href="javascript:;">热门博客</a>
+            <a href="{:url('user_blog')}">我的博客</a>
+        </p>
+        {/if}
+    </li>
+    <li>
+        <h4 class="user-items">
+            评论管理
+        </h4>
+        <p class="user-btn yum-btn-2 yum-btn-group">
+            <a href="javascript:;">回复</a>
+            <a href="javascript:;">评论</a>
+        </p>
+    </li>
+    <li>
+        <h4 class="user-items">
+            我的圈子
+        </h4>
+        <p class="user-btn yum-btn-3 yum-btn-group">
+            <a href="javascript:;">关注</a>
+            <a href="javascript:;">粉丝</a>
+            <a href="javascript:;">朋友</a>
+        </p>
+    </li>
+</ul>
+<ul class="card card-2">
+    <li class="contractile-card user-contractile">
+        <div class="contractile-card-title">
+            <span><icon class="icon-notice"> 系统公告</icon></span>
+            <icon class="icon-angle-down icon-lg yum-fr"></icon>
+        </div>
+        <div class="contractile-card-content contractile-card-content-show contractile-card-content-notice">
+            <p>
+                <span>
+                    YUM社区更新了一些新功能，快去看看吧！
+                </span>
+                <a href="javascript:;">查看详情
+                    <icon class="icon-more"></icon>
+                </a>
+            </p>
+            <p>
+                <span>
+                    YUM社区更新了一些新功能，快去看看吧！
+                </span>
+                <a href="javascript:;">查看详情
+                    <icon class="icon-more"></icon>
+                </a>
+            </p>
+            <p>
+                <span>
+                    YUM社区更新了一些新功能，快去看看吧！
+                </span>
+                <a href="javascript:;">查看详情
+                    <icon class="icon-more"></icon>
+                </a>
+            </p>
+            <p>
+                <span>
+                    YUM社区更新了一些新功能，快去看看吧！
+                </span>
+                <a href="javascript:;">查看详情
+                    <icon class="icon-more"></icon>
+                </a>
+            </p>
+            <p>
+                <span>
+                    YUM社区更新了一些新功能，快去看看吧！
+                </span>
+                <a href="javascript:;">查看详情
+                    <icon class="icon-more"></icon>
+                </a>
+            </p>
+            <p>
+                <span>
+                    YUM社区更新了一些新功能，快去看看吧！
+                </span>
+                <a href="javascript:;">查看详情
+                    <icon class="icon-more"></icon>
+                </a>
+            </p>
+            <p>
+                <a href="javascript:;">更多公告
+                    <icon class="icon-more"></icon>
+                </a>
+            </p>
+        </div>
+    </li>
+    <li class="contractile-card user-contractile">
+        <div class="contractile-card-title">
+            <span><icon class="icon-data-info"> 资料夹</icon></span>
+            <icon class="icon-angle-down icon-lg yum-fr"></icon>
+        </div>
+        <div class="contractile-card-content contractile-card-content-show">
+            <dd>
+                <span class="name">会员编号</span>
+                <span class="titles">
+                    {$session_user.accountID|default=''}
+                </span>
+            </dd>
+            <dd>
+                <span class="name">昵称</span>
+                <span class="titles">
+                    {$session_user.user_name|default=''}
+                </span>
+            </dd>
+            <dd>
+                <span class="name">邮箱</span>
+                <span class="titles">{:get_email_encryption($session_user['email'])}</span>
+            </dd>
+            <dd>
+                <span class="name">会员等级</span>
+                <span class="titles">
+                    <icon class="user-level">
+                        {$session_user.member_level|default=1}
+                    </icon>
+                </span>
+            </dd>
+            <dd>
+                <span class="name">性别</span>
+                <span class="titles">
+                    {if condition='$session_user["sex"] == 1'}
+                    男
+                    {elseif condition='$session_user["sex"] == 2'/}
+                    女
+                    {else/}
+                    <i style="color: grey">未设置</i>
+                    {/if}
+                </span>
+            </dd>
+            <dd>
+                <span class="name">生日</span>
+                <span class="titles">
+                    {if condition='$session_user["birthday"] > 0'}
+                    {:date('n月d日',$session_user["birthday"])}
+                    {else/}
+                    <i style="color: grey">未设置</i>
+                    {/if}
+                </span>
+            </dd>
+            <dd>
+                <span class="name">年龄</span>
+                <span class="titles">
+                    {if condition='$session_user["birthday"] > 0'}
+                    {:get_age($session_user["birthday"])}岁
+                    {else/}
+
+                    {/if}
+                </span>
+            </dd>
+            <dd>
+                <span class="name">个性签名</span>
+                <span class="titles">
+                    {$session_user.jingle|default='<i style="color: grey">未设置</i>'}
+                </span>
+            </dd>
+        </div>
+    </li>
+    <li class="contractile-card user-contractile">
+        <div class="contractile-card-title">
+            <span><icon class="icon-edit"> 修改密码</icon></span>
+            <icon class="icon-angle-down icon-lg yum-fr"></icon>
+        </div>
+        <form class="contractile-card-content contractile-card-content-show contractile-card-content-form"
+              id="modfiy-password" autocomplete="off" data-form="ajax" action="{:url('sign/change_password')}">
+            <dl>
+                <dt>
+                    <span class="important">*</span>原密码
+                </dt>
+                <dd>
+                    <input type="password" name="old_password" data-required="请输入原密码">
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <span class="important">*</span>新密码
+                </dt>
+                <dd>
+                    <input type="password" name="password" data-required="请输入密码" data-rule="^[a-zA-z0-9]{6,16}$"
+                           data-rule-message="请输入6~16位字母或数字" id="password">
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <span class="important">*</span>确认密码
+                </dt>
+                <dd>
+                    <input type="password" data-required="请确认密码" data-equal="#password">
+                </dd>
+            </dl>
+            <dl>
+                <dt></dt>
+                <dd>
+                    <button type="submit" class="yum-button yum-button-primary">修改密码</button>
+                </dd>
+            </dl>
+        </form>
+    </li>
+    <li class="contractile-card user-contractile">
+        <div class="contractile-card-title">
+            <span><icon class="icon-tags"> 我的标签</icon></span>
+            <icon class="icon-angle-down icon-lg yum-fr">
+            </icon>
+            <span class="yum-fr">
+                <a href="javascript:;">添加标签</a>
+                <a href="javascript:;">更多</a>
+            </span>
+        </div>
+        <ul class="contractile-card-content contractile-card-content-show article-tag">
+            <li>
+                <tag>666</tag>
+                <item data-number="1"></item>
+            </li>
+            <li>
+                <tag>23333</tag>
+                <item data-number="15"></item>
+            </li>
+            <li>
+                <tag>3333</tag>
+                <item data-number="99+"></item>
+            </li>
+        </ul>
+    </li>
+</ul>
+{/block}
+{block name='js'}
+<script>
+    $(".user-data-list").click(function () {
+        $(this).addClass("actives").siblings(".user-data-list").removeClass("actives");
+    });
+    siblings_width();
+
+    function get_widtdh() {
+        var width = 0
+        $(".contractile-card-content .name").each(function () {
+            var w = $(this).width();
+            width = Math.max(w, width);
+        });
+        $(".contractile-card-content .name").width(width);
+    }
+
+    get_widtdh();
+    $(window).resize(function () {
+        get_widtdh();
+    });
+    var modfiy = new VerJs();
+    modfiy.init({
+        form: "#modfiy-password",
+        success: function (data) {
+            if (typeof data != "object") data = JSON.parse(data);
+            layer.msg(data.msg, function () {
+                if (data.code == 1) location.reload();
+                else {
+                    if (data.data) {
+                        $("input[name=" + data.data + "]").val("").focus();
+                    }
+                }
+            })
+        },
+        linkName: "__PLUGIN__/verJs/need"
+    });
+</script>
+{/block}

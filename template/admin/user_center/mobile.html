@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta content="email=no" name="format-detection"/>
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" name="viewport"/>
+    <title>后台管理平台</title>
+    {css href="__CSS__/common.css"}
+    {css href="__CSS__/mytag.css"}
+    {css href="__CSS__/iconfont.css"}
+    <style>
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-image: linear-gradient(-16deg, #a1d4ff 0%, #b59ffd 100%), linear-gradient(#acd7f6, #acd7f6);
+            background-repeat: no-repeat;
+            background-blend-mode: multiply, normal;
+        }
+
+        .mobile{
+            position: fixed;
+            width: 70vw;
+            background-color: rgba(255,255,255,.5);
+            line-height: 35px;
+            left: 50%;
+            padding: 15px;
+            margin-left: -38vw;
+            color: #ff1f30;
+            font-size: 14px;
+            font-weight: bold;
+            height: 80px;
+            top: 50%;
+            margin-top: -40px;
+            border-radius: 5px;
+            box-shadow: 3px 3px 3px #dedede,-3px -3px 3px #dedede;
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile">
+        为了更好的界面体验，请使用PC打开后台管理系统，为您带来的不便敬请谅解
+    </div>
+</body>
+{js href="__JS__/jquery.min.js"}
+{js href="__JS__/admin/common.js"}
+{js href="__PLUGIN__/layer/layer.js"}
+<script>
+if(!isMobile()){
+    history.go(-1);
+}
+
+$(window).resize(function () {
+    if(!isMobile()){
+        history.go(-1);
+    }
+});
+</script>
+</html>

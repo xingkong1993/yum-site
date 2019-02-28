@@ -1,0 +1,31 @@
+{extend name="default/detail_template"/}
+{block name="items"}
+<dl>
+    <dt><span class="important"></span>类型</dt>
+    <dd>
+       {$type?config('email_template.'.$type):""}
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>模板内容</dt>
+    <dd style="width: 35%;border: 1px solid #dedede; padding: 0 15px">
+        {$content|htmlspecialchars_decode}
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>状态</dt>
+    <dd>
+        {eq name='state' value="1"}
+        <icon class="success"></icon>
+        {else/}
+        <icon class="error"></icon>
+        {/eq}
+    </dd>
+</dl>
+{/block}
+{block name="js"}
+<script>
+
+</script>
+{/block}
+

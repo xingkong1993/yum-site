@@ -1,0 +1,39 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #dedede;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.close-box{
+    width: 85%;
+    text-align: center;
+    margin: calc(35% - 300px) auto;
+}
+
+
+.close-box icon{
+    display: inline-block;
+    width: 120px;
+    height: 100%;
+    text-align: center;
+    margin-left: 15px;
+    color: #ff1f30;
+}
+
+.close-box span{
+    display: inline-block;
+    vertical-align: 45px;
+    line-height: 35px;
+    text-align: left;
+    margin-left: 15px;
+    font-size: 30px;
+    color: grey;
+    font-family: -apple-system, "Droid Sans", "Droid Sans Fallback", "Microsoft YaHei", FreeSans, Helvetica, Arial;
+}

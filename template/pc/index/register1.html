@@ -1,0 +1,52 @@
+{extend name='/tpl'}
+{block name="title"}来2018数博会体验BOE（京东方）带来的物联网解决方案{/block}
+{block name="css"}
+{css href="__PLUGIN__/bootstrap/css/bootstrap.css"}
+{/block}
+{block name='menu'}
+<ul class="yum-fr nav-menu">
+    <li>
+        <a href="{:url('index')}">
+            <icon class="icon-home"></icon>
+            首页</a>
+    </li>
+    <li>
+        <a href="{:url('blog_list')}">
+            <icon class="icon-hot"></icon>
+            热门博客</a>
+    </li>
+    <li>
+        <a href="{:url('edit_blog')}">
+            <icon class="icon-edit"></icon>
+            写博客</a>
+    </li>
+</ul>
+{/block}
+{block name='mobile_menu'}
+<li>
+    <a href="{:url('index')}">
+        <icon class="icon-home"></icon>
+        首页</a>
+</li>
+<li>
+    <a href="{:url('blog_list')}">
+        <icon class="icon-hot"></icon>
+        热门博客</a>
+</li>
+{if condition="!request()->isMobile()"}
+<li>
+    <a href="{:url('edit_blog')}">
+        <icon class="icon-edit"></icon>
+        写博客</a>
+</li>
+{/if}
+{/block}
+{block name='content'}
+{include file="/sign"/}
+{/block}
+{block name='banners'}
+<!--{include file="/rightUserInfo"/}-->
+<!--{include file="/rightBannersBlog" title="热门博客"/}-->
+{/block}
+{block name='js'}
+{/block}

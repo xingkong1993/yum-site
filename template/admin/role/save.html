@@ -1,0 +1,36 @@
+{extend name='default/edit_template'/}
+{block name="form"}
+<dl>
+    <dt><span class="important">*</span>名称</dt>
+    <dd>
+        <input type="hidden" name="id" value="{$id|default=''}">
+        <input type="text" name="name" data-minlength="2" autocomplete="off" value="{$name|default=''}">
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important"></span>说明
+    </dt>
+    <dd>
+        <textarea type="text" autocomplete="off" name="remarks">{$remarks|default=''}</textarea>
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important"></span>状态
+    </dt>
+    <dd>
+        <input type="checkbox" class="switch" id="status" name="status">
+    </dd>
+</dl>
+{/block}
+{block name="js"}
+<script>
+    var state = "{$status|default=1}";
+    if(state==1){
+        $("#status").prop("checked",true);
+    }else{
+        $("#status").prop("checked",false);
+    }
+</script>
+{/block}

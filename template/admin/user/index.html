@@ -1,0 +1,29 @@
+{extend name="default/table_template"/}
+{block name='btn'}{/block}
+{block name="search"}
+<ul>
+    <!--<li>-->
+        <!--<label>-->
+            <!--角色：-->
+            <!--<input type="text" name="name" value="{$name|default=''}" autocomplete="off">-->
+        <!--</label>-->
+    <!--</li>-->
+    <!--<li>-->
+        <!--<button type="submit" class="yum-button yum-button-primary"><icon class="icon-search"></icon> 搜索</button>-->
+        <!--<a href="{:url('index')}" class="yum-button yum-button-caution">清除搜索</a>-->
+    <!--</li>-->
+</ul>
+{/block}
+{block name="thead"}
+<th data-field="accountID" width="100">会员编号</th>
+<th data-field="icon" data-image='{"width":60,"height":60}' width="60">头像</th>
+<th data-field="user_name" width="220">昵称</th>
+<th data-field="email" width="220">邮箱</th>
+<th data-field="age" width="60" data-style="text-align:center">年龄</th>
+<th data-field="birthday" data-style="text-align:center" width="100">生日</th>
+<th data-field="sex" data-style="text-align:center" data-eq="{1:'男',2:'女',3:'保密'}" width="60">性别</th>
+<th width="60" data-field="status" data-style="text-align:center"
+    data-eq="{1:'<icon class=success></icon>',2:'<icon class=error></icon>'}">状态
+</th>
+<th data-field="option" data-style="text-align:center" data-rules="{'%id':'id'}">操作</th>
+{/block}

@@ -1,0 +1,71 @@
+{extend name='default/edit_template'/}
+{block name="form"}
+<dl>
+    <dt>
+        <span class="important"></span> 文章标题
+    </dt>
+    <dd>
+        <input type="hidden" value="{$id|default=0}" name="id">
+        <input type="text" disabled="disabled" value="{$title|default=''}">
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important"></span> 缩略图
+    </dt>
+    <dd>
+        <img src="{$blog_icon|default='__IMG__/default.png'}" width="220" alt="">
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important">*</span> 状态
+    </dt>
+    <dd>
+        <select name="status" id="status" data-required="请选择状态">
+            <option value="">请选择</option>
+            <option value="1">通过</option>
+            <option value="4">未通过</option>
+        </select>
+    </dd>
+</dl>
+<dl>
+    <dt>
+        <span class="important"></span> 审核建议
+    </dt>
+    <dd>
+        <textarea name="remarks" placeholder="未通过审核必填"></textarea>
+    </dd>
+</dl>
+<dl>
+    <dt></dt>
+    <dd>
+        <a href="//new.yum.com/blog_details.html?id={$id}" target="_blank">查看原文</a>
+    </dd>
+</dl>
+{/block}
+{block name="js"}
+<script>
+    var pid = "{:isset($pid)&&$pid>=0?$pid:(input('pid')?input('pid'):0)}";
+    $("#pid").val(pid);
+    if (parseInt($("#pid").find("option:selected").attr("level")) + 1 > 1) {
+        $(".icon").hide();
+        $("input[name=level]").val(parseInt($("#pid").find("option:selected").attr("level")) + 1)
+    }
+    var state = "{$status|default=1}";
+    if (state == 1) {
+        $("#status").prop("checked", true);
+    } else {
+        $("#status").prop("checked", false);
+    }
+    var form = new VerJs();
+    form.init({
+        form: "form.items",
+        // linkName: "__PLUGIN__/verJs/need",
+        success: successCallback,
+        fail: function (data) {
+
+        }
+    });
+</script>
+{/block}

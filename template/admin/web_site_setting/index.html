@@ -1,0 +1,79 @@
+{extend name="default/detail_template"/}
+{block name="items"}
+<dl>
+    <dt><span class="important"></span>网站名称</dt>
+    <dd>{$site_name|default=''}</dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>网站logo</dt>
+    <dd>
+        <img src="{$site_logo|default=''}" alt="" height="120">
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>版权&备案信息</dt>
+    <dd><icon class="icon-copyright"></icon> {$site_copyright|default=''}</dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>网站关键词</dt>
+    <dd>{$site_key|default=''}</dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>网站介绍</dt>
+    <dd>{$site_jingle|default=''}</dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>网站状态</dt>
+    <dd>
+        {eq name='site_status' value="1"}
+        <icon class="success"></icon>
+        {else/}
+        <icon class="error"></icon>
+        {/eq}
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>创办人</dt>
+    <dd>{$site_founder|default=''}</dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>手机号</dt>
+    <dd>{$site_mobile|default=''}</dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>QQ</dt>
+    <dd>{$site_qq|default=''}</dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>新浪微博</dt>
+    <dd>
+        <img src="{$site_sina_weibo|default=''}" alt="" height="120">
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>客服电话</dt>
+    <dd>{$site_customer|default=''}</dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>邮箱</dt>
+    <dd>{$site_email|default=''}</dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>微信公众号</dt>
+    <dd>
+        <img src="{$site_wechat|default=''}" alt="" height="120">
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>微信小程序</dt>
+    <dd>
+        <img src="{$site_mini_app|default=''}" alt="" height="120">
+    </dd>
+</dl>
+{/block}
+{block name="footer"}
+<div class="footer_btn right">
+    <a type="button" class="yum-button yum-button-primary" href="{:url('edit')}"><icon class="icon-edit"></icon> 编辑</a>
+</div>
+{/block}
+{block name="js"}{/block}

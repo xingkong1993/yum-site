@@ -1,0 +1,141 @@
+{extend name='/tpl'}
+{block name="title"}写博客{/block}
+{block name="css"}
+{css href="__PLUGIN__/switch/css/bootstrap-switch.css"}
+{/block}
+{block name='menu'}
+<ul class="yum-fr nav-menu">
+    <li class="">
+        <a href="{:url('index')}">
+            <icon class="icon-home"></icon>
+            首页</a>
+    </li>
+    <li>
+        <a href="{:url('blog_list')}">
+            <icon class="icon-hot"></icon>
+            热门博客</a>
+    </li>
+    <li class="active">
+        <a href="javascript:;">
+            <icon class="icon-edit"></icon>
+            写博客</a>
+    </li>
+</ul>
+{/block}
+{block name='mobile_menu'}
+<li>
+    <a href="{:url('index')}">
+        <icon class="icon-home"></icon>
+        首页</a>
+</li>
+<li>
+    <a href="{:url('blog_list')}">
+        <icon class="icon-hot"></icon>
+        热门博客</a>
+</li>
+{if condition="!request()->isMobile()"}
+<li>
+    <a href="{:url('edit_blog')}">
+        <icon class="icon-edit"></icon>
+        写博客</a>
+</li>
+{/if}
+{/block}
+{block name='content'}
+{if condition='!empty($session_user)'}
+<form action="" data-form="ajax" autocomplete="off" class="edit">
+    <fieldset>
+        <icon class="icon-edit"></icon>
+        写博客
+    </fieldset>
+    <dl>
+        <!--<input type="hidden">-->
+        <dt><span class="red">*</span> 标题</dt>
+        <dd>
+            <input type="text" name="title" data-required="博客标题不能为空">
+        </dd>
+    </dl>
+    <dl>
+        <dt>
+            标签
+        </dt>
+        <dd>
+            <input type="text" name="tag">
+            <p class="red">多个标签以空格区分</p>
+        </dd>
+    </dl>
+    <dl>
+        <dt>
+            <span class="red">*</span> 博客类型
+        </dt>
+        <dd>
+            <select name="type" id="type" data-required="博客类型不能为空">
+                <option value="">请选择</option>
+                <option value="1">技术</option>
+                <option value="2">灌水</option>
+                <option value="3">讨论</option>
+                <option value="4">求助</option>
+            </select>
+        </dd>
+    </dl>
+    <dl>
+        <dt>
+            是否允许评论
+        </dt>
+        <dd>
+            <input type="checkbox" name="is_comment" class="switch" checked>
+        </dd>
+    </dl>
+    <dl>
+        <dt>
+            <span class="red">*</span> 博客内容
+        </dt>
+        <dd>
+            <textarea name="content" id="content" cols="30" rows="10"></textarea>
+        </dd>
+    </dl>
+    <dl>
+        <dt></dt>
+        <dd>
+            <button type="submit" class="yum-button-primary yum-button">发布</button>
+        </dd>
+    </dl>
+</form>
+{else/}
+{include file="/sign" /}
+{/if}
+{/block}
+{block name='banners'}
+{include file="/rightBannerTag" names="热门标签"/}
+{/block}
+{block name='js'}
+{if condition='!empty($session_user)'}
+<script src="__PLUGIN__/editor/ueditor.config.js"></script>
+<script src="__PLUGIN__/editor/ueditor.all.js"></script>
+{js href="__PLUGIN__/switch/js/bootstrap-switch.js"}
+<script>
+    siblings_width();
+    $(".switch").bootstrapSwitch();
+    UE.getEditor('content', {
+        autoHeightEnabled: false,
+        initialFrameWidth: "80%",
+        initialFrameHeight: 298,
+        elementPathEnabled: false,
+        wordCount: false
+    });
+    var form = new VerJs();
+    form.init({
+        form: "form",
+        success: function (data) {
+            data = typeof data != "object" ? JSON.parse(data) : data;
+            if (data.code == 1) {
+                location.href = "{:url('user/user_blog')}"
+            } else {
+                layer.msg(data.msg)
+            }
+        },
+        linkName: "__PLUGIN__/verJs/need"
+    });
+</script>
+{/if}
+{/block}

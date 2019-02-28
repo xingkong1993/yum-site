@@ -1,0 +1,164 @@
+{extend name='/tpl'}
+{block name="title"}来2018数博会体验BOE（京东方）带来的物联网解决方案{/block}
+{block name="css"}
+{css href="__PLUGIN__/bootstrap/css/bootstrap.css"}
+{/block}
+{block name='menu'}
+<ul class="yum-fr nav-menu">
+    <li>
+        <a href="{:url('index')}">
+            <icon class="icon-home"></icon>
+            首页</a>
+    </li>
+    <li>
+        <a href="{:url('blog_list')}">
+            <icon class="icon-hot"></icon>
+            热门博客</a>
+    </li>
+    <li>
+        <a href="{:url('edit_blog')}">
+            <icon class="icon-edit"></icon>
+            写博客</a>
+    </li>
+</ul>
+{/block}
+{block name='mobile_menu'}
+<li>
+    <a href="{:url('index')}">
+        <icon class="icon-home"></icon>
+        首页</a>
+</li>
+<li>
+    <a href="{:url('blog_list')}">
+        <icon class="icon-hot"></icon>
+        热门博客</a>
+</li>
+{if condition="!request()->isMobile()"}
+<li>
+    <a href="{:url('edit_blog')}">
+        <icon class="icon-edit"></icon>
+        写博客</a>
+</li>
+{/if}
+{/block}
+{block name='content'}
+<article class="article-items">
+    <div class="article-items-title">
+        <h1>来2018数博会体验BOE（京东方）带来的物联网解决方案</h1>
+        <p class="article-items-author">
+            <span class="author yum-fl">
+                <icon class="icon-user icon-2x"></icon>
+                <b>张三</b>
+                <date>09-20 11:13</date>
+            </span>
+            <span class="yum-fr great">
+                <icon class="icon-hot"> 127</icon>
+                <icon class="icon-zan"> 655</icon>
+                <icon class="icon-comment-number"> 6000</icon>
+            </span>
+        </p>
+    </div>
+    <blockquote class="article-items-jingle">
+        2018国际数字经济博览会（数博会）在石家庄国际会展中心开幕，在3.8万平方米展览区内，来自国内外的参展企业展示了前沿数字成果。
+    </blockquote>
+    <div class="article-items-content">
+        <p>
+            2018国际数字经济博览会（数博会）在石家庄国际会展中心开幕，在3.8万平方米展览区内，来自国内外的参展企业展示了前沿数字成果。其中，BOE（京东方）带来了智慧零售解决方案、数字艺术解决方案BOE画屏、柔性显示及屏下指纹识别解决方案、移动健康解决方案等，让人们感受到数字经济发展给生活带来的改变。
+        </p>
+        <p>
+            你是否体验过这样的购物场景？进入零售店、百货商店或超市时，门口的AI数字标牌会“很懂你”的进行智能互动，完全能够满足个性化需求；在购物过程中，货架上的电子标签可以进行商品定位，规划出最优路线供你参考；通过手机NFC或扫描二维码，你还可以进入指定的线上商城，进行线上下单、支付，选取自提或物流服务带走产品……在本届数博会上，你就能够体验到BOE（京东方）带来的智慧零售生活。
+        </p>
+        <p>
+            据了解，BOE（京东方）AI数字标牌具有多维互动、智能感知、数据挖掘、实时推送等功能，通过AI和大数据技术对顾客需求进行精准分析，进行自助下单；同时还能为店铺经营者提供顾客人流统计、兴趣产品统计、VIP分析识别、交易数据等信息，构建一个连接线上线下场景的价值生态体系。
+        </p>
+        <p>
+            在商超领域，BOE（京东方）已构建了一套完整的智慧零售解决方案，电子标签可以实现商品价格与信息实时同步，与AI数字标牌联动，能将商品信息在大屏上直观清晰的展现给消费者。不仅如此，BOE（京东方）智慧零售解决方案还能实现商品定位、货架管理、分析店铺客量等功能，通过对货架进行实时监控，AI图像识别技术能够智能识别货架摆放异常情况，提醒管理人员及时调整，并对顾客拿取商品的频次进行记录和大数据分析，让商超零售变得更加智能化。
+        </p>
+        <p>
+            在数字经济时代，数字化和信息化让人们生活发生改变。BOE（京东方）基于显示、传感、人工智能和大数据等核心技术，已在终端、零售、金融、交通、健康、家居等多个领域，为人们提供柔性显示、超高清显示、智慧零售、数字艺术、健康服务等物联网解决方案。
+        </p>
+    </div>
+</article>
+<div class="article-items-comment">
+    <blockquote>
+        <icon class="icon-hot"> 热门评论</icon>
+    </blockquote>
+    <ul class="article-items-comment-list">
+        <li>
+            <div class="author">
+                <icon class="icon-user icon-2x"></icon>
+                <b>张三</b>
+                <date>09-21 13:58</date>
+            </div>
+            <div class="contents">
+                <p>
+                    在数字经济时代，数字化和信息化让人们生活发生改变。BOE（京东方）基于显示、传感、人工智能和大数据等核心技术，已在终端、零售、金融、交通、健康、家居等多个领域，为人们提供柔性显示、超高清显示、智慧零售、数字艺术、健康服务等物联网解决方案。
+                </p>
+            </div>
+            <div class="great">
+                <icon class="icon-hot"> 177</icon>
+                <icon class="icon-zan"> 152</icon>
+            </div>
+        </li>
+        <li>
+            <div class="author">
+                <icon class="icon-user icon-2x"></icon>
+                <b>张三</b>
+                <date>09-21 13:58</date>
+            </div>
+            <div class="contents">
+                <p>
+                    在数字经济时代，数字化和信息化让人们生活发生改变。BOE（京东方）基于显示、传感、人工智能和大数据等核心技术，已在终端、零售、金融、交通、健康、家居等多个领域，为人们提供柔性显示、超高清显示、智慧零售、数字艺术、健康服务等物联网解决方案。
+                </p>
+            </div>
+            <div class="great">
+                <icon class="icon-hot"> 177</icon>
+                <icon class="icon-zan"> 152</icon>
+            </div>
+        </li>
+        <li>
+            <div class="author">
+                <icon class="icon-user icon-2x"></icon>
+                <b>张三</b>
+                <date>09-21 13:58</date>
+            </div>
+            <div class="contents">
+                <p>
+                    在数字经济时代，数字化和信息化让人们生活发生改变。BOE（京东方）基于显示、传感、人工智能和大数据等核心技术，已在终端、零售、金融、交通、健康、家居等多个领域，为人们提供柔性显示、超高清显示、智慧零售、数字艺术、健康服务等物联网解决方案。
+                </p>
+            </div>
+            <div class="great">
+                <icon class="icon-hot"> 177</icon>
+                <icon class="icon-zan"> 152</icon>
+            </div>
+        </li>
+    </ul>
+    <div class="page">
+        <ul class="pagination">
+            <li class="disabled"><span>首页</span></li>
+            <li class="disabled"><span>上一页</span></li>
+            <li class="active"><span>1</span></li>
+            <li class="disabled"><span>下一页</span></li>
+            <li class="disabled"><span>末页</span></li>
+        </ul>
+    </div>
+
+</div>
+<div class="article-items-remarks">
+    <blockquote>
+        <icon class="icon-comment"> 我的观点</icon>
+    </blockquote>
+    <form autocomplete="off" action="" onsubmit="return Verification.submit(this)" data-form="ajax">
+        <textarea name="comment" placeholder="请发表您的观点" data-required="请发表您的观点"></textarea>
+        <p style="width: 60px;margin-left: calc(50% - 60px)">
+            <button class="yum-button yum-button-primary">发表</button>
+        </p>
+    </form>
+</div>
+{/block}
+{block name='banners'}
+{include file="/rightUserInfo"/}
+{include file="/rightBannersBlog" title="热门博客"/}
+{/block}
+{block name='js'}
+{/block}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta content="email=no" name="format-detection"/>
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" name="viewport"/>
+    <title>{$site_name} - 确认注册信息</title>
+    <link rel="stylesheet" href="__CSS__/common.css">
+    <link rel="stylesheet" href="__CSS__/mytag.css">
+    <link rel="stylesheet" href="__CSS__/pc.css">
+    <link rel="stylesheet" href="__CSS__/iconfont.css">
+    <script src="__JS__/jquery.min.js"></script>
+    <script src="__JS__/pc/common.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <script src="__PLUGIN__/verJs/verJs.js"></script>
+    <!--<link rel="stylesheet" href="//at.alicdn.com/t/font_840730_mds708knt4q.css">-->
+    {css href="__CSS__/button.css"}
+    <!--<link rel="stylesheet" href="__PLUGIN__/font-icon/css/font-awesome.css">-->
+    <link rel="stylesheet" href="__PLUGIN__/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="__PLUGIN__/bootstrap/css/bootstrap-theme.css">
+    {block name='css'}{/block}
+</head>
+<body>
+<header class="header">
+    <div class="nav">
+        <!--<img src="__IMG__/logo.png" height="45" alt="">-->
+        <p class="yum-fl title" onclick="location.href='/index'">
+            {$site_name}
+        </p>
+        <ul class="yum-fr nav-menu">
+            <li>
+                <a href="{:url('index/index')}">
+                    <icon class="icon-home"></icon>
+                    首页</a>
+            </li>
+            <li>
+                <a href="{:url('index/blog_list')}">
+                    <icon class="icon-hot"></icon>
+                    热门博客</a>
+            </li>
+            <li>
+                <a href="{:url('index/edit_blog')}">
+                    <icon class="icon-edit"></icon>
+                    写博客</a>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="content yum-cl">
+    {if condition='$is_login'}
+    <p style="text-align: center;padding-top: 60px;line-height: 45px;font-size: 18px">
+        <icon class="{$success} icon-4x {$status==1?'green':'red'}"></icon>
+        <span style="display: block">{$message|default=''}</span>
+        <span style="display: block">
+            {eq name='status' value='2'}
+            <a href="{:url('sign/email_login?uid='.$id)}">邮件重发</a>
+            {else/}
+            <times></times>秒以后自动跳转
+            {/eq}
+            <a href="{:url('index/index')}">返回首页</a>
+        </span>
+    </p>
+    {else/}
+    {include file="/sign" /}
+    {/if}
+</div>
+<div id="scollorTop">
+    <icon class="icon-goTop icon-4x"></icon>
+    <span>返回顶部</span>
+</div>
+
+<footer class="footer">
+    <div>
+        <span>友情链接：</span>
+        <a href="http://www.thinkphp.cn/" target="_blank" class="link">thinkphp</a>
+        <a href="javascript:;" target="_blank" class="link">YUM-ADMIN</a>
+    </div>
+    <div>
+        <icon class="icon-copyright"></icon>
+        {$site_copyright}
+    </div>
+    <div class="talk_me">
+        <span> <icon class="icon-qq"></icon> {$site_qq}</span>
+        <span> <icon class="icon-email"></icon> {$site_email}</span>
+    </div>
+    <div class="qrcode" hidden>
+        <p>
+            <img src="{$site_wechat}" alt="" width="120" ondragstart='return false;'>
+            <br>
+            {$site_name}公众号
+        </p>
+        <p>
+            <img src="{$site_mini_app}" alt="" width="120" ondragstart='return false;'>
+            <br>
+            {$site_name}小程序
+        </p>
+        <p>
+            <img src="{$site_sina_weibo}" alt="" width="120" ondragstart='return false;'>
+            <br>
+            {$site_name}新浪微博
+        </p>
+    </div>
+</footer>
+</body>
+<script>
+    var djs = '',
+        t = 5,
+        time = document.querySelector("times");
+
+    function times() {
+        time.innerText = t;
+        t--;
+        if (t <= 0) {
+            clearTimeout(djs);
+            location.href = '{:url("index/index")}';
+            t = 5;
+        } else {
+            djs = setTimeout("times()", 1000);
+        }
+    }
+
+    times();
+</script>
+</html>

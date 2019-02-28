@@ -1,0 +1,48 @@
+{extend name='default/edit_template'/}
+{block name="form"}
+<dl>
+    <dt><span class="important">*</span>邮件类型</dt>
+    <dd>
+        <input type="hidden" name="id" value="{$id|default=''}">
+        <select name="type" id="type" data-required="请选择邮件类型">
+            <option value="">请选择</option>
+            {volist name=':config("email_template")' id='email_template'}
+            <option value="{$key}">{$email_template}</option>
+            {/volist}
+        </select>
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important">*</span>邮件内容</dt>
+    <dd>
+        <textarea name="content" id="content" cols="30" rows="10">{$content|default=''}</textarea>
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>状态</dt>
+    <dd>
+        <input type="checkbox" class="switch" id="status" name="state">
+    </dd>
+</dl>
+{/block}
+{block name="js"}
+<script src="__PLUGIN__/editor/ueditor.config.js"></script>
+<script src="__PLUGIN__/editor/ueditor.all.js"></script>
+<script>
+    $("#type").val("{$type|default=''}")
+    var status = '{$status|default=1}';
+    if(status == 1){
+        $("#status").prop("checked",true);
+    }
+    var ue = UE.getEditor('content', {
+        autoHeightEnabled: false,
+        initialFrameWidth: 540,
+        initialFrameHeight: 300,
+        elementPathEnabled: false,
+        wordCount: false,
+        toolbars: [['undo', 'redo', '|',
+            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset',"|", 'blockquote', 'pasteplain', "forecolor", "backcolor",'fontsize', '|',
+            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify',"link"]]
+    });
+</script>
+{/block}

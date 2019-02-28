@@ -1,0 +1,128 @@
+{extend name='default/edit_template'/}
+{block name="form"}
+<dl>
+    <dt><span class="important"></span>网站名称</dt>
+    <dd>
+        <input type="text" value="{$site_name|default=''}" name="site_name">
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>网站logo</dt>
+    <dd>
+        <img src="{$site_logo|default='__IMG__/default.png'}" alt="" height="120">
+        <button type="button" class="yum-button yum-button-primary upload upload_img">
+            <icon class="icon-upload"></icon>
+            上传logo
+        </button>
+        <button type="button" class="yum-button yum-button-caution clearUpload clear_upload_img">清除上传</button>
+        <input type="hidden" value="{$site_logo|default=''}" name="site_logo" data-reg="['jpg','png','jpeg']"/>
+        <input type="file" class="upload_file">
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>版权&备案信息</dt>
+    <dd>
+        <icon class="icon-copyright"></icon>
+        <input type="text" value="{$site_copyright|default=''}" name="site_copyright">
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>网站关键词</dt>
+    <dd>
+        <textarea name="site_key" id="site_key" cols="30" rows="10">{$site_key|default=''}</textarea>
+        <p class="important" style="display: block;width: auto;text-align: left">多个关键词以空格分割</p>
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>网站介绍</dt>
+    <dd>
+        <textarea name="site_jingle" id="site_jingle" cols="30" rows="10">{$site_jingle|default=''}</textarea>
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>网站状态</dt>
+    <dd>
+        <input type="checkbox" name="site_status" id="status" class="switch"/>
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>创办人</dt>
+    <dd>
+        <input type="text" name="site_founder" value="{$site_founder|default=''}">
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>手机号</dt>
+    <dd>
+        <input type="text" name="site_mobile" value="{$site_mobile|default=''}">
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>QQ</dt>
+    <dd>
+        <input type="text" name="site_qq" value="{$site_qq|default=''}">
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>新浪微博</dt>
+    <dd>
+        <img src="{$site_sina_weibo|default='__IMG__/default.png'}" alt="" height="120">
+        <button type="button" class="yum-button yum-button-primary upload upload_img">
+            <icon class="icon-upload"></icon>
+            上传微博二维码
+        </button>
+        <button type="button" class="yum-button yum-button-caution clearUpload clear_upload_img">清除上传</button>
+        <input type="hidden" value="{$site_sina_weibo|default=''}" name="site_sina_weibo"
+               data-reg="['jpg','png','jpeg']"/>
+        <input type="file" class="upload_file">
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>客服电话</dt>
+    <dd>
+        <input type="text" name="site_customer" value="{$site_customer|default=''}">
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>邮箱</dt>
+    <dd>
+        <input type="text" name="site_email" value="{$site_email|default=''}">
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>微信公众号</dt>
+    <dd>
+        <img src="{$site_wechat|default='__IMG__/default.png'}" alt="" height="120">
+        <button type="button" class="yum-button yum-button-primary upload upload_img">
+            <icon class="icon-upload"></icon>
+            上传公众号二维码
+        </button>
+        <button type="button" class="yum-button yum-button-caution clearUpload clear_upload_img">清除上传</button>
+        <input type="hidden" value="{$site_wechat|default=''}" name="site_wechat" data-reg="['jpg','png','jpeg']"/>
+        <input type="file" class="upload_file">
+    </dd>
+</dl>
+<dl>
+    <dt><span class="important"></span>微信小程序</dt>
+    <dd>
+        <img src="{$site_mini_app|default='__IMG__/default.png'}" alt="" height="120">
+        <button type="button" class="yum-button yum-button-primary upload upload_img">
+            <icon class="icon-upload"></icon>
+            上传小程序码
+        </button>
+        <button type="button" class="yum-button yum-button-caution clearUpload clear_upload_img">清除上传</button>
+        <input type="hidden" value="{$site_mini_app|default=''}" name="site_mini_app" data-reg="['jpg','png','jpeg']"/>
+        <input type="file" class="upload_file">
+    </dd>
+</dl>
+{/block}
+{block name="js"}
+<script>
+    var state = "{$site_status|default=1}";
+    if (state == 1) {
+        $("#status").prop("checked", true);
+    } else {
+        $("#status").prop("checked", false);
+    }
+</script>
+{/block}

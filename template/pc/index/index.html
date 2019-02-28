@@ -1,0 +1,220 @@
+{extend name='/tpl'}
+{block name='menu'}
+<p class="search yum-fr">
+    <input type="text" autocomplete="off" name="search" onfocus="this.placeholder=''" placeholder="搜索热门博客/博主"
+           onblur="search_blur(this)">
+    <icon class="icon-search" onclick="show_search_input(this)"></icon>
+</p>
+<ul class="yum-fr nav-menu">
+    <li class="active">
+        <a href="javascript:;">
+            <icon class="icon-home"></icon>
+            首页
+        </a>
+    </li>
+    <li>
+        <a href="{:url('blog_list')}">
+            <icon class="icon-hot"></icon>
+            热门博客
+        </a>
+    </li>
+    {if condition="!request()->isMobile()"}
+    <li>
+        <a href="{:url('edit_blog')}">
+            <icon class="icon-edit"></icon>
+            写博客
+        </a>
+    </li>
+    {/if}
+</ul>
+{/block}
+{block name='mobile_menu'}
+<li class="active">
+    <a href="javascript:;">
+        <icon class="icon-home"></icon>
+        首页
+    </a>
+</li>
+<li>
+    <a href="{:url('blog_list')}">
+        <icon class="icon-hot"></icon>
+        热门博客
+    </a>
+</li>
+{if condition="!request()->isMobile()"}
+<li>
+    <a href="{:url('edit_blog')}">
+        <icon class="icon-edit"></icon>
+        写博客
+    </a>
+</li>
+{/if}
+{/block}
+{block name='content'}
+<article class="article">
+    <div class="article-title">
+        <span class="yum-fl">
+            系统公告区
+        </span>
+        <a href="javascript:;" class="yum-fr">
+            more
+            <icon class="icon-more"></icon>
+        </a>
+    </div>
+    <ul class="article-list">
+        <li class="yum-cl">
+            <a href="{:url('blog_detail')}">
+                <p class="yum-fl">YUM-ADNIN上线公告</p>
+                <p class="yum-fr">
+                    <!--<span><i class="icon-hot"></i> 0</span>-->
+                    <span>时间:<date>2018-09-18 09:47:05</date></span>
+                </p>
+            </a>
+        </li>
+    </ul>
+</article>
+<article class="article">
+    <div class="article-title">
+        <span class="yum-fl">
+            热门跟帖<icon class="icon-hot hot"></icon>
+        </span>
+        <a href="javascript:;" class="yum-fr">
+            more
+            <icon class="icon-more"></icon>
+        </a>
+    </div>
+    <ul class="article-list">
+        <li class="yum-cl">
+            <a href="javascript:;">
+                <p class="yum-fl">YUM-ADNIN上线公告</p>
+                <p class="yum-fr">
+                    <!--<span><i class="icon-hot"></i> 0</span>-->
+                    <span>时间:<date>2018-09-18 09:47:05</date></span>
+                </p>
+            </a>
+        </li>
+    </ul>
+</article>
+<article class="article">
+    <div class="article-title">
+        <span class="yum-fl">
+            技术讨论区
+        </span>
+        <a href="javascript:;" class="yum-fr">
+            more
+            <icon class="icon-more"></icon>
+        </a>
+    </div>
+    <ul class="article-list">
+        <li class="yum-cl">
+            <a href="javascript:;">
+                <p class="yum-fl">testttt待付款就凯萨琳地方就就开始大量福建省</p>
+                <p class="yum-fr">
+                    <span><icon class="icon-hot"></icon> 127</span>
+                    <span>时间:<date>2018-09-18 09:47:05</date></span>
+                </p>
+            </a>
+        </li>
+        <li class="yum-cl">
+            <a href="javascript:;">
+                <p class="yum-fl">testttt待付款就凯萨琳地方就就开始大量福建省</p>
+                <p class="yum-fr">
+                    <span><icon class="icon-hot"></icon> 127</span>
+                    <span>时间:<date>2018-09-18 09:47:05</date></span>
+                </p>
+            </a>
+        </li>
+        <li class="yum-cl">
+            <a href="javascript:;">
+                <p class="yum-fl">testttt待付款就凯萨琳地方就就开始大量福建省</p>
+                <p class="yum-fr">
+                    <span><icon class="icon-hot"></icon> 127</span>
+                    <span>时间:<date>2018-09-18 09:47:05</date></span>
+                </p>
+            </a>
+        </li>
+        <li class="yum-cl">
+            <a href="javascript:;">
+                <p class="yum-fl">testttt待付款就凯萨琳地方就就开始大量福建省</p>
+                <p class="yum-fr">
+                    <span><icon class="icon-hot"></icon> 127</span>
+                    <span>时间:<date>2018-09-18 09:47:05</date></span>
+                </p>
+            </a>
+        </li>
+        <li class="yum-cl">
+            <a href="javascript:;">
+                <p class="yum-fl">testttt待付款就凯萨琳地方就就开始大量福建省</p>
+                <p class="yum-fr">
+                    <span><icon class="icon-hot"></icon> 127</span>
+                    <span>时间:<date>2018-09-18 09:47:05</date></span>
+                </p>
+            </a>
+        </li>
+    </ul>
+</article>
+<article class="article">
+    <div class="article-title">
+        <span class="yum-fl">
+            灌水区
+        </span>
+        <a href="javascript:;" class="yum-fr">
+            more
+            <icon class="icon-more"></icon>
+        </a>
+    </div>
+    <ul class="article-list">
+        <li class="yum-cl">
+            <a href="javascript:;">
+                <p class="yum-fl">testttt待付款就凯萨琳地方就就开始大量福建省</p>
+                <p class="yum-fr">
+                    <span><icon class="icon-hot"></icon> 127</span>
+                    <span>时间:<date>2018-09-18 09:47:05</date></span>
+                </p>
+            </a>
+        </li>
+        <li class="yum-cl">
+            <a href="javascript:;">
+                <p class="yum-fl">testttt待付款就凯萨琳地方就就开始大量福建省</p>
+                <p class="yum-fr">
+                    <span><icon class="icon-hot"></icon> 127</span>
+                    <span>时间:<date>2018-09-18 09:47:05</date></span>
+                </p>
+            </a>
+        </li>
+        <li class="yum-cl">
+            <a href="javascript:;">
+                <p class="yum-fl">testttt待付款就凯萨琳地方就就开始大量福建省</p>
+                <p class="yum-fr">
+                    <span><icon class="icon-hot"></icon> 127</span>
+                    <span>时间:<date>2018-09-18 09:47:05</date></span>
+                </p>
+            </a>
+        </li>
+        <li class="yum-cl">
+            <a href="javascript:;">
+                <p class="yum-fl">testttt待付款就凯萨琳地方就就开始大量福建省</p>
+                <p class="yum-fr">
+                    <span><icon class="icon-hot"></icon> 127</span>
+                    <span>时间:<date>2018-09-18 09:47:05</date></span>
+                </p>
+            </a>
+        </li>
+        <li class="yum-cl">
+            <a href="javascript:;">
+                <p class="yum-fl">testttt待付款就凯萨琳地方就就开始大量福建省</p>
+                <p class="yum-fr">
+                    <span><icon class="icon-hot"></icon> 127</span>
+                    <span>时间:<date>2018-09-18 09:47:05</date></span>
+                </p>
+            </a>
+        </li>
+    </ul>
+</article>
+{/block}
+{block name='banners'}
+{include file="/rightUserInfo"/}
+{include file="/rightBannerTag" names="热门标签" /}
+{/block}
+{block name='js'}
+{/block}

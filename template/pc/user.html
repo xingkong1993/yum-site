@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta content="email=no" name="format-detection"/>
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" name="viewport"/>
+    <title>{$site_name} - {block name='title'}会员中心{/block}</title>
+    <link rel="stylesheet" href="__CSS__/common.css">
+    <link rel="stylesheet" href="__CSS__/mytag.css">
+    <link rel="stylesheet" href="__CSS__/pc.css">
+    <link rel="stylesheet" href="__CSS__/iconfont.css">
+    <script src="__JS__/jquery.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <script src="__JS__/common.js"></script>
+    <script src="__JS__/pc/common.js"></script>
+    <script src="__PLUGIN__/verJs/verJs.js"></script>
+    <!--<link rel="stylesheet" href="//at.alicdn.com/t/font_840730_mds708knt4q.css">-->
+    {css href="__CSS__/button.css"}
+    <!--<link rel="stylesheet" href="__PLUGIN__/font-icon/css/font-awesome.css">-->
+    <link rel="stylesheet" href="__PLUGIN__/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="__PLUGIN__/bootstrap/css/bootstrap-theme.css">
+    {block name='css'}{/block}
+</head>
+<body>
+<header class="header">
+    <div class="nav">
+        <p class="yum-fl title" onclick="location.href='{:url(\'index/index\')}'">
+            {$site_name}
+        </p>
+        <ul class="yum-fr nav-menu">
+            <li class="">
+                <a href="{:url('index/index')}">
+                    <icon class="icon-home"></icon>
+                    首页</a>
+            </li>
+            <li>
+                <a href="{:url('index/blog_list')}">
+                    <icon class="icon-hot"></icon>
+                    热门博客</a>
+            </li>
+            <li>
+                <a href="{:url('index/edit_blog')}">
+                    <icon class="icon-edit"></icon>
+                    写博客
+                </a>
+            </li>
+        </ul>
+        <div class="mobile-menu yum-fr">
+            <icon class="icon-lg menu-btn icon-menus"></icon>
+            <ul class="mobile-menu-list">
+                <li class="login">
+                    {if condition="!empty($session_user)"}
+                    <div class="user-login yum-cl">
+                        <span class="yun-fl">
+                            <icon class="icon-user"> {$session_user.user_name|default=''}</icon>
+                        </span>
+                    </div>
+                    {else/}
+                    <icon class="icon-user not-login" onclick="goLogin()"> 登录/注册</icon>
+                    {/if}
+                </li>
+                <li class="">
+                    <a href="{:url('index/index')}">
+                        <icon class="icon-home"></icon>
+                        首页
+                    </a>
+                </li>
+                <li>
+                    <a href="{:url('index/blog_list')}">
+                        <icon class="icon-hot"></icon>
+                        热门博客</a>
+                </li>
+                {if condition="!request()->isMobile()"}
+                <li>
+                    <a href="{:url('edit_blog')}">
+                        <icon class="icon-edit"></icon>
+                        写博客</a>
+                </li>
+                {/if}
+                <li class="active user-center">
+                    <span>个人中心</span>
+                    <ul>
+                        {block name='menu_list'}{/block}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="content yum-cl">
+    <ul class="banner">
+        <li class="login-box">
+            <div class="user-info">
+                <p class="user-banner">
+                    <span>
+                        {if condition='$session_user["icon"]'}
+                        <img src="{$session_user.icon}" alt="">
+                        {else/}
+                        <icon class="icon-user icon-3x"></icon>
+                        {/if}
+                    </span>
+                    <b>
+                        <icon class="user-level">{$session_user.member_level|default=1}</icon>
+                        {$session_user.user_name|default=''}
+                    </b>
+                </p>
+            </div>
+        </li>
+        {block name='banners'}
+
+        {/block}
+    </ul>
+    <div class="item userCenter">
+        {block name='content'}
+        {/block}
+    </div>
+</div>
+<div id="scollorTop" onclick="get_top()">
+    <icon class="icon-goTop icon-4x"></icon>
+    <span>返回顶部</span>
+</div>
+
+<footer class="footer">
+    <div>
+        <span>友情链接：</span>
+        <a href="http://www.thinkphp.cn/" target="_blank" class="link">thinkphp</a>
+        <a href="javascript:;" target="_blank" class="link">YUM-ADMIN</a>
+    </div>
+    <div>
+        <icon class="icon-copyright"></icon>
+        {$site_copyright}
+    </div>
+    <div class="talk_me">
+        <span> <icon class="icon-qq"></icon> {$site_qq}</span>
+        <span> <icon class="icon-email"></icon> {$site_email}</span>
+    </div>
+    <div class="qrcode" hidden>
+        <p>
+            <img src="{$site_wechat}" alt="" width="120" ondragstart='return false;'>
+            <br>
+            {$site_name}公众号
+        </p>
+        <p>
+            <img src="{$site_mini_app}" alt="" width="120" ondragstart='return false;'>
+            <br>
+            {$site_name}小程序
+        </p>
+        <p>
+            <img src="{$site_sina_weibo}" alt="" width="120" ondragstart='return false;'>
+            <br>
+            {$site_name}新浪微博
+        </p>
+    </div>
+</footer>
+<div id="gologin">
+    {include file="/sign" /}
+    <icon class="closed icon-close icon-4x"></icon>
+</div>
+<script>
+    $(".user-data-list").click(function () {
+        $(this).addClass("actives").siblings(".user-data-list").removeClass("actives");
+    });
+    $(".menu-btn").click(function () {
+        if ($(this).siblings(".mobile-menu-list").hasClass("mobile-menu-list-show")) {
+            $(this).siblings(".mobile-menu-list").removeClass("mobile-menu-list-show").addClass("mobile-menu-list-hide");
+        } else {
+            $(this).siblings(".mobile-menu-list").addClass("mobile-menu-list-show").removeClass("mobile-menu-list-hide");
+        }
+    });
+</script>
+{block name='js'}{/block}
+</body>
+</html>

@@ -1,0 +1,108 @@
+{extend name='/tpl'}
+{block name="title"}热门博客{/block}
+{block name="css"}
+{css href="__PLUGIN__/bootstrap/css/bootstrap.css"}
+{/block}
+{block name='menu'}
+<ul class="yum-fr nav-menu">
+    <li>
+        <a href="{:url('index')}">
+            <icon class="icon-home"></icon>
+            首页</a>
+    </li>
+    <li class="active">
+        <a href="javascript:;">
+            <icon class="icon-hot"></icon>
+            热门博客</a>
+    </li>
+    <li>
+        <a href="{:url('edit_blog')}">
+            <icon class="icon-edit"></icon>
+            写博客</a>
+    </li>
+</ul>
+{/block}
+{block name='mobile_menu'}
+<li>
+    <a href="{:url('index')}">
+        <icon class="icon-home"></icon>
+        首页</a>
+</li>
+<li class="active">
+    <a href="{:url('blog_list')}">
+        <icon class="icon-hot"></icon>
+        热门博客</a>
+</li>
+{if condition="!request()->isMobile()"}
+<li>
+    <a href="{:url('edit_blog')}">
+        <icon class="icon-edit"></icon>
+        写博客</a>
+</li>
+{/if}
+{/block}
+{block name='content'}
+<article class="article-items">
+
+</article>
+{/block}
+{block name='banners'}
+{include file="/rightUserInfo"/}
+<li class="yum-cl">
+    <article class="article article-tags">
+        <div class="article-title">
+            <span class="yum-fl">
+                热力传递
+            </span>
+            <a href="javascript:;" class="yum-fr">
+                more
+                <icon class="icon-more"></icon>
+            </a>
+        </div>
+        <ul class="article-list">
+            <li class="yum-cl">
+                <a href="javascript:;">
+                    <p class="yum-fl">testttt待付款就凯萨琳地方就就开始大量福建省</p>
+                    <p class="yum-fr">
+                        <span><icon class="icon-hot"></icon> 127</span>
+                    </p>
+                </a>
+            </li>
+            <li class="yum-cl">
+                <a href="javascript:;">
+                    <p class="yum-fl">testttt待付款就凯萨琳地方就就开始大量福建省</p>
+                    <p class="yum-fr">
+                        <span><icon class="icon-hot"></icon> 127</span>
+                    </p>
+                </a>
+            </li>
+            <li class="yum-cl">
+                <a href="javascript:;">
+                    <p class="yum-fl">testttt待付款就凯萨琳地方就就开始大量福建省</p>
+                    <p class="yum-fr">
+                        <span><icon class="icon-hot"></icon> 127</span>
+                    </p>
+                </a>
+            </li>
+            <li class="yum-cl">
+                <a href="javascript:;">
+                    <p class="yum-fl">testttt待付款就凯萨琳地方就就开始大量福建省</p>
+                    <p class="yum-fr">
+                        <span><icon class="icon-hot"></icon> 127</span>
+                    </p>
+                </a>
+            </li>
+            <li class="yum-cl">
+                <a href="javascript:;">
+                    <p class="yum-fl">testttt待付款就凯萨琳地方就就开始大量福建省</p>
+                    <p class="yum-fr">
+                        <span><icon class="icon-hot"></icon> 127</span>
+                    </p>
+                </a>
+            </li>
+        </ul>
+    </article>
+</li>
+{/block}
+{block name='js'}
+{/block}

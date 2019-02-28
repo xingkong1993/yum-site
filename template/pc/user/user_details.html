@@ -1,0 +1,258 @@
+{extend name='/user'}
+{block name='css'}
+<link rel="stylesheet" href="__PLUGIN__/cropper/css/cropper.css">
+{/block}
+{block name='banners'}
+<li class="user-data-list actives">
+    <icon class="icon-data"></icon>
+    我的资料
+</li>
+<li class="user-data-list" onclick="location.href='{:url(\'user_blog\')}'">
+    <icon class="icon-files"></icon>
+    我的博客 ({$blog_number|default=''})
+</li>
+<li class="user-data-list">
+    <icon class="icon-comment"></icon>
+    我的评论
+</li>
+<li class="user-data-list">
+    <icon class="icon-friend"></icon>
+    我的圈子
+</li>
+{/block}
+{block name='menu_list'}
+<li class="user-data-list actives">
+    <icon class="icon-data"></icon>
+    我的资料
+</li>
+<li class="user-data-list" onclick="location.href='{:url(\'user_blog\')}'">
+    <icon class="icon-files"></icon>
+    我的博客 ({$blog_number|default=''})
+</li>
+<li class="user-data-list">
+    <icon class="icon-comment"></icon>
+    我的评论
+</li>
+<li class="user-data-list">
+    <icon class="icon-friend"></icon>
+    我的圈子
+</li>
+{/block}
+{block name='content'}
+<ul class="banner-charts">
+    <li>
+        <a href="{:url('index')}">会员中心</a>
+    </li>
+    <li>
+        <span>我的资料</span>
+    </li>
+</ul>
+<blockquote>
+    会员基本资料
+    <a href="javascript:;" class="yum-fr edit">修改</a>
+</blockquote>
+<form id="user_details">
+    <dl class="user-datail">
+        <dt>
+            会员编号
+        </dt>
+        <dd>
+            <input type="text" value="{$session_user.accountID|default=''}" disabled="disabled">
+        </dd>
+    </dl>
+    <dl class="user-datail">
+        <dt>
+            昵称
+        </dt>
+        <dd>
+            <input type="text" value="{$session_user.user_name|default=''}" name="user_name" autocomplete="off"
+                   disabled="disabled" class="edit-input">
+        </dd>
+    </dl>
+    <dl class="user-datail">
+        <dt>
+            邮箱
+        </dt>
+        <dd>
+            <input type="text" value="{:get_email_encryption($session_user['email'])}" disabled="disabled">
+        </dd>
+    </dl>
+    <dl class="user-datail">
+        <dt>
+            状态
+        </dt>
+        <dd>
+            {if condition='$session_user.status == 1 && $session_user.captcha == 1'}
+            <icon class="success"> 已验证</icon>
+            {elseif condition='$session_user.status != 1'/}
+            <icon class="error"> 状态错误</icon>
+            {else/}
+            <icon class="error"> 未验证</icon>
+            {/if}
+        </dd>
+    </dl>
+    <dl class="user-datail">
+        <dt>
+            性别
+        </dt>
+        <dd>
+            <select name="sex" id="sex" disabled="disabled" class="edit-input">
+                <option value="3">未设置</option>
+                <option value="1">男</option>
+                <option value="2">女</option>
+            </select>
+        </dd>
+    </dl>
+    <dl class="user-datail">
+        <dt>会员等级</dt>
+        <dd>
+            <icon class="user-level">
+                {$session_user.member_level}
+            </icon>
+        </dd>
+    </dl>
+    <dl class="user-datail">
+        <dt>
+            生日
+        </dt>
+        <dd>
+            <input type="text" name="birthday"
+                   value="{$session_user['birthday']?date('Y-m-d',$session_user['birthday']):''}" class="edit-input"
+                   id="birthday" disabled="disabled">
+        </dd>
+    </dl>
+    <dl class="user-datail">
+        <dt>
+            年龄
+        </dt>
+        <dd>
+            {if condition='$session_user["birthday"] > 0'}
+            <span class="age">{:get_age($session_user["birthday"])}</span>岁
+            {else/}
+            <i style="color: grey">未设置</i>
+            {/if}
+        </dd>
+    </dl>
+    <dl class="user-datail">
+        <dt>
+            个性签名
+        </dt>
+        <dd>
+            <textarea name="jingle" id="jingle" cols="30" rows="10" disabled="disabled" class="edit-input">{$session_user.jingle|default=''}</textarea>
+        </dd>
+    </dl>
+</form>
+<blockquote style="margin-top: 15px">
+    会员扩展信息
+</blockquote>
+<dl class="user-datail">
+    <dt>
+        头像
+    </dt>
+    <dd>
+        {~$src=$session_user.icon?:'__IMG__/default.png'}
+        <span class="user-icon user-icon-60 image-radius-100 image-border image-box-sand">
+            <img src="{$src}" alt="" width="60" height="60" class="">
+            {if condition='!request()->isMobile()'}
+            <span class="change-icon" onclick="upload_user_icon(this)"
+                  data-save="{:url('upload_user_icon')}">更换头像</span>
+            {/if}
+        </span>
+        <span class="user-icon user-icon-120 image-radius-100 image-border image-box-sand">
+            <img src="{$src}" alt="" width="120" height="120" class="">
+            {if condition='!request()->isMobile()'}
+            <span class="change-icon" onclick="upload_user_icon(this)"
+                  data-save="{:url('upload_user_icon')}">更换头像</span>
+            {/if}
+        </span>
+    </dd>
+</dl>
+<blockquote style="margin-top: 15px">
+    会员积分信息
+</blockquote>
+<table class="user-table">
+    <thead>
+    <tr>
+        <td align="right" colspan="2">用户积分总额：{$session_user.score|default=0}</td>
+        <td align="right" colspan="3">即将过期积分：{$expiry_score|default=0}</td>
+    </tr>
+    <tr>
+        <td>序号</td>
+        <td>积分</td>
+        <td>来源</td>
+        <td>获得时间</td>
+        <td>过期时间</td>
+    </tr>
+    </thead>
+    <tbody>
+    {volist name='data' id='vo'}
+    <tr>
+        <td>{$key+1}</td>
+        <td>{$vo.score}</td>
+        <td>{$vo.remark}</td>
+        <td>{$vo.aTime|date='Y-m-d',###}</td>
+        <td>{$vo.expiry_time|date='Y-m-d',###}</td>
+    </tr>
+    {/volist}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="5" align="right" class="page">
+            {$data->render()}
+        </td>
+    </tr>
+    </tfoot>
+</table>
+{/block}
+{block name='js'}
+<script src="__JS__/verUpload.js"></script>
+<script src="__PLUGIN__/cropper/js/cropper.js"></script>
+<script src="__PLUGIN__/laydate/laydate.js"></script>
+<script>
+    siblings_width();
+    $(".edit").click(function () {
+        $(this).text("保存").addClass("save").removeClass("edit");
+        $(".edit-input").removeAttr("disabled");
+        $("#birthday").attr("readonly", true);
+        var max_date = new Date().getFullYear() - 10;
+        laydate.render({
+            elem: "#birthday",
+            theme: '#00bfff',
+            min: "1970-01-01",
+            max: max_date + "-12-31",
+            done: function (d) {
+                var now = new Date(),
+                    year = now.getFullYear(),
+                    month = now.getMonth() + 1,
+                    day = now.getDate(),
+                    birthday = d.split("-"),
+                    age = parseInt(year) - parseInt(birthday[0]),
+                    today = parseInt([month, day].join(""));
+                birthday = parseInt([birthday[1], birthday[2]].join(""));
+                if (today < birthday) {
+                    age -= 1;
+                }
+                $(".age").text(age);
+            }
+        });
+        $(".save").click(function () {
+            var data = $("#user_details").serialize();
+            var _self = this;
+            layer.confirm("是否更改用户信息？", {icon: 3}, function (i) {
+                layer.close(i);
+                $(_self).removeClass("save").addClass("edit").text("修改");
+                $(".edit-input").attr("disabled", true)
+                $.post("{:url('save_user_details')}", data, function (d) {
+                    layer.msg(d.msg);
+                });
+            })
+        });
+    });
+    $("#sex").val("{$session_user.sex|default=3}");
+    var edit = '{:input("edit")}';
+    if (edit) {
+        $(".edit").click();
+    }
+
+</script>
+{/block}
