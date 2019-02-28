@@ -60,18 +60,20 @@ function get_api_return_message($code, $sign, $method = "", $format = "json", $m
     if (!empty($data)) $return['data'] = $data;
     switch ($format) {
         case "xml":
-            return xml_encode($return, "resultData");
+            $d = xml_encode($return, "resultData");
             break;
         case "base64":
-            return base64_encode(serialize($return));
+            $d = base64_encode(serialize($return));
             break;
         case "serialize":
-            return serialize($return);
+            $d = serialize($return);
             break;
         default:
-            return json_encode($return, JSON_UNESCAPED_UNICODE);
+            $d = json_encode($return, JSON_UNESCAPED_UNICODE);
             break;
     }
+	
+	return $d;
 }
 
 function logic($name)
